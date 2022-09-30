@@ -1,0 +1,13 @@
+@import "styles/main";
+@import "styles/header";
+@import "styles/wallet-modal";
+@import "styles/detail-page";
+@import "styles/utils/colors";
+
+body {
+  color: $textColor;
+}
+a {
+  text-decoration: none;
+  color: $textColor;
+}

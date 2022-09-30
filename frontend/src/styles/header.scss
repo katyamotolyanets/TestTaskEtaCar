@@ -1,0 +1,12 @@
+header {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 1% 5%;
+  .top-currencies-container {
+    display: flex;
+  }
+  div {
+    padding: 0 1%;
+  }
+}

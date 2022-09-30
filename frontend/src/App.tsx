@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import './App.scss';
+import MainPage from "./components/main/MainPage";
+import axios from "axios";
+import DetailPage from "./components/detail-page/DetailPage";
+import Header from "./components/header/Header";
 
-function App() {
+axios.defaults.baseURL = 'https://api.coincap.io/v2';
+
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Header/>
+        <Router>
+            <Routes>
+                <Route path='/' element={<MainPage/>}/>
+                <Route path='/main' element={<MainPage/>}/>
+                <Route path='/currency/:id' element={<DetailPage/>}/>
+            </Routes>
+        </Router>
     </div>
   );
 }

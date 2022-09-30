@@ -1,0 +1,28 @@
+@import "utils/colors";
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2% 5%;
+  table {
+    border-collapse: collapse;
+  }
+  tr {
+    td {
+      border-top: 0.01em solid $accentColor;
+      position: relative;
+      padding: 1% 1% 1% 2%;
+    }
+    &:first-child {
+      td {
+        border: none;
+
+      }
+    }
+    &:hover,
+    &:focus-within {
+      background: #f2f3ff;
+      outline: none;
+    }
+  }
+}
