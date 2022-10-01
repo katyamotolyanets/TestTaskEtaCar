@@ -1,25 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
 
 import TableElement from "./TableElement";
 import WalletModal from "../wallet-modal-window/WalletModal";
 import AddItemToWalletModal from "../add-item-to-wallet-modal/AddItemToWalletModal";
+import {fetchCurrenciesData} from "../../store/actions/currency";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useActions} from "../../hooks/useActions";
+import {CurrencyType} from "../../types/currency";
 
-const MainPage = () => {
-    const [elements, setElements] = useState([])
-    const [walletModalActive, setWalletModalActive] = useState(false)
-    const [itemToWalletModalActive, setItemToWalletModalActive] = useState(false)
+const MainPage: React.FC = () => {
+    const {fetchCurrenciesData} = useActions();
+    const {currencies} = useTypedSelector(state => state.currencies);
+    const [walletModalActive, setWalletModalActive] = useState(false);
 
     useEffect(() => {
-        axios.get( '/assets')
-            .then(({data}) => setElements(data.data))
-    }, [])
+        fetchCurrenciesData()
+    }, []);
+
+    const onClick = () => {
+        setWalletModalActive(true)
+    };
 
     return (
         <div className='main-container'>
-            <WalletModal active={walletModalActive} setActive={setWalletModalActive}/>
-            <AddItemToWalletModal active={itemToWalletModalActive}
-                                  setActive={setItemToWalletModalActive}/>
+
+            <button onClick={onClick}>Wallet</button>
             <table>
                 <tbody className='table'>
                     <tr className='table-row'>
@@ -28,15 +33,16 @@ const MainPage = () => {
                         <td>Price</td>
                         <td>Add to wallet</td>
                     </tr>
-                    {elements?.map(({id, name, changePercent24Hr, priceUsd}) => {
+                    {currencies?.map(({id, name, changePercent24Hr, priceUsd}: CurrencyType) => {
                         return <TableElement id={id}
                                              name={name}
                                              changePercentDay={changePercent24Hr}
-                                             priceUsd={priceUsd}
-                                             setActive={setItemToWalletModalActive}/>
+                                             priceUsd={priceUsd}/>
                     })}
                 </tbody>
             </table>
+            <WalletModal active={walletModalActive} setActive={setWalletModalActive}/>
+            <AddItemToWalletModal/>
         </div>
     );
 };
