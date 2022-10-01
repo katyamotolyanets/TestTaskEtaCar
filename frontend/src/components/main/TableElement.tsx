@@ -1,6 +1,6 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {Link} from "react-router-dom";
-import {formatStringToNumber} from "../services/service";
+import {formatStringToNumber} from "../../services/service";
 
 export interface ElementComponentProps {
     id: string

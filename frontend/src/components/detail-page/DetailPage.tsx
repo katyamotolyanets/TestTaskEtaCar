@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import axios from "axios";
 import {CartesianGrid, Line, LineChart, Tooltip, XAxis} from 'recharts';
-import {formatStringToDate, formatStringToNumber} from "../services/service";
+import {formatStringToDate, formatStringToNumber} from "../../services/service";
 
 const DetailPage: React.FC = () => {
     const {id} = useParams()
