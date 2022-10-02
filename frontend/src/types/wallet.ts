@@ -8,27 +8,26 @@ export interface WalletType {
 export interface WalletState {
     currencies: any[],
     loading: boolean,
-    error: null | string
+    visible: boolean
 }
 
 export interface WalletCurrencyInfo {
+    id: string,
     price: string | null,
     count: number
 }
 
 export enum WalletActionTypes {
-    ADD_CURRENCY ='ADD_CURRENCY',
-    ADD_CURRENCY_SUCCESS = 'ADD_CURRENCY_SUCCESS',
-    ADD_CURRENCY_FAILED = 'ADD_CURRENCY_FAILED',
-    GET_INITIAL_WALLET_PRICE = 'GET_INITIAL_WALLET_PRICE'
+    ADD_CURRENCY = 'ADD_CURRENCY',
+    DELETE_CURRENCY = 'DELETE_CURRENCY',
+    GET_INITIAL_WALLET_PRICE = 'GET_INITIAL_WALLET_PRICE',
+    SET_MODAL_VISIBLE = 'SET_MODAL_VISIBLE',
+    SET_MODAL_INVISIBLE = 'SET_MODAL_INVISIBLE',
+    INITIALIZE_WALLET = 'INITIALIZE_WALLET',
 }
 
 interface AddCurrencyAction {
     type: WalletActionTypes.ADD_CURRENCY
-}
-
-interface AddCurrencySuccessAction {
-    type: WalletActionTypes.ADD_CURRENCY_SUCCESS
     payload: {
         id: string | null,
         price: string | null,
@@ -36,8 +35,8 @@ interface AddCurrencySuccessAction {
     }
 }
 
-interface AddCurrencyFailedAction {
-    type: WalletActionTypes.ADD_CURRENCY_FAILED
+interface DeleteCurrencyAction {
+    type: WalletActionTypes.DELETE_CURRENCY
     payload: string
 }
 
@@ -45,4 +44,19 @@ interface GetInitialWalletPrice {
     type: WalletActionTypes.GET_INITIAL_WALLET_PRICE
 }
 
-export type WalletAction = AddCurrencyAction | AddCurrencySuccessAction | AddCurrencyFailedAction | GetInitialWalletPrice
+interface SetModalVisible {
+    type: WalletActionTypes.SET_MODAL_VISIBLE
+}
+
+interface SetModalInvisible {
+    type: WalletActionTypes.SET_MODAL_INVISIBLE
+}
+
+interface InitializeWallet {
+    type: WalletActionTypes.INITIALIZE_WALLET,
+    payload: any[]
+}
+
+
+export type WalletAction = AddCurrencyAction | GetInitialWalletPrice | SetModalVisible |
+    SetModalInvisible | InitializeWallet | DeleteCurrencyAction

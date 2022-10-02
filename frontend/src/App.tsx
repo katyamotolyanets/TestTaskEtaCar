@@ -6,13 +6,16 @@ import axios from "axios";
 import DetailPage from "./components/detail-page/DetailPage";
 import Header from "./components/header/Header";
 import {useActions} from "./hooks/useActions";
+import WalletModal from "./components/wallet-modal-window/WalletModal";
+import AddItemToWalletModal from "./components/add-item-to-wallet-modal/AddItemToWalletModal";
 
 axios.defaults.baseURL = 'https://api.coincap.io/v2';
 
 const App: React.FC = () => {
-    const {costOfWallet} = useActions();
+    const {initializeWallet, calculateInitialWalletPrice} = useActions();
     useEffect(() => {
-        costOfWallet()
+        initializeWallet()
+        calculateInitialWalletPrice()
     }, [])
     return (
     <div className="App">
@@ -24,6 +27,8 @@ const App: React.FC = () => {
                 <Route path='/currency/:id' element={<DetailPage/>}/>
             </Routes>
         </Router>
+        <WalletModal/>
+        <AddItemToWalletModal/>
     </div>
   );
 }

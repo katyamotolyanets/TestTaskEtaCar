@@ -9,21 +9,23 @@ const AddItemToWalletModal = () => {
     const {currentCurrency} = useTypedSelector(state => state.currencies);
     const {id, priceUsd} = currentCurrency;
 
-    const onChangeCountOfCurrency = (event: React.FormEvent<HTMLInputElement>) => {
-        setCountOfCurrency(event.currentTarget.value)
+    const handleChangeCountOfCurrency = (event: React.FormEvent<HTMLInputElement>) => {
+        setCountOfCurrency(event.currentTarget.value);
     };
-    const onClickAdd = () => {
-        addCurrencyToWallet(id, priceUsd, Number(formatStringToNumber(countOfCurrency)))
+
+    const handleClickAddToWallet = () => {
+        addCurrencyToWallet(id, priceUsd, Number(formatStringToNumber(countOfCurrency)));
+        setCurrentCurrency('', '')
+        setCountOfCurrency('')
     };
 
     return (
         <div>
-            <div className={currentCurrency.id ? 'modal active' : 'modal'} onClick={() => setCurrentCurrency('', '')}>
+            <div className={currentCurrency.id ? 'modal active' : 'modal'}
+                 onClick={() => setCurrentCurrency('', '')}>
                 <div className='modal__content' onClick={e => e.stopPropagation()}>
-                    <input type="text" onChange={onChangeCountOfCurrency}/>
-
-                    <button onClick={onClickAdd}>Add to wallet</button>
-
+                    <input type="text" value={countOfCurrency} onChange={handleChangeCountOfCurrency}/>
+                    <button onClick={handleClickAddToWallet}>Add to wallet</button>
                 </div>
             </div>
         </div>

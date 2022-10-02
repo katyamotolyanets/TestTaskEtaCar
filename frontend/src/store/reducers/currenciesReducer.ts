@@ -10,7 +10,7 @@ const initialState: CurrencyState = {
     error: null
 }
 
-export const currencyReducer = (state = initialState, action: CurrencyAction): CurrencyState => {
+export const currenciesReducer = (state = initialState, action: CurrencyAction): CurrencyState => {
     switch (action.type) {
         case CurrenciesActionTypes.FETCH_CURRENCIES:
             return {

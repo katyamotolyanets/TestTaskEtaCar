@@ -9,7 +9,7 @@ export const fetchCurrenciesData = () => {
             const response = await axios.get('/assets')
             dispatch({type: CurrenciesActionTypes.FETCH_CURRENCIES_SUCCESS, payload: response.data.data})
         } catch (error) {
-            dispatch({type: CurrenciesActionTypes.FETCH_CURRENCIES_FAILED, payload: 'error'})
+            dispatch({type: CurrenciesActionTypes.FETCH_CURRENCIES_FAILED, payload: 'Cannot get data'})
         }
     }
 }
@@ -20,6 +20,7 @@ export const setCurrentCurrency = (id: string, priceUsd: string) => {
             id: id,
             priceUsd: priceUsd
         }
+        localStorage.setItem('currentCurrency', id);
         dispatch({type: CurrenciesActionTypes.SET_CURRENT_CURRENCY, payload: currentCurrency})
     }
 }

@@ -1,22 +1,21 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router";
-import axios from "axios";
+import {useNavigate, useParams} from "react-router";
 import {CartesianGrid, Line, LineChart, Tooltip, XAxis} from 'recharts';
 import {formatStringToDate, formatStringToNumber} from "../../services/service";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useActions} from "../../hooks/useActions";
 
 const DetailPage: React.FC = () => {
     const {id} = useParams()
-    const [currentCurrency, setCurrentCurrency] = useState({
-        rank: '',
-        name: '',
-        symbol: '',
-        priceUsd: '',
-        supply: '',
-        maxSupply: '',
-        marketCapUsd: '',
-        vwap24Hr: ''
-    })
-    const [currencyHistory, setCurrencyHistory] = useState([])
+    const {fetchCurrencyData, fetchCurrencyHistory, setCurrentCurrency} = useActions()
+
+    useEffect(() => {
+        fetchCurrencyData(id)
+        fetchCurrencyHistory(id)
+    }, [id])
+
+    const {currency, history} = useTypedSelector(state => state.currency)
+
     const {
         rank,
         name,
@@ -26,17 +25,18 @@ const DetailPage: React.FC = () => {
         maxSupply,
         marketCapUsd,
         vwap24Hr
-    } = currentCurrency
+    } = currency
 
-    useEffect(() => {
-        axios.get(`/assets/${id}`)
-            .then(({data}) => setCurrentCurrency(data.data))
-    }, [id])
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        axios.get(`/assets/${id}/history?interval=d1`)
-            .then(({data}) => setCurrencyHistory(data.data))
-    }, [id])
+    const handleClickBackToMainPage = () => {
+        navigate('/');
+    };
+
+    const handleClickBuyCurrency = () => {
+        if (id != null && priceUsd != null)
+            setCurrentCurrency(id, priceUsd)
+    };
 
     return (
         <div className='detail-page-container'>
@@ -49,11 +49,12 @@ const DetailPage: React.FC = () => {
                 <div>Quantity of trading volume represented in
                     USD over the last 24 hours: {formatStringToNumber(marketCapUsd)}$</div>
                 <div>Average Price in the last 24 hours: {formatStringToNumber(vwap24Hr)}$</div>
-                <button>Add to wallet</button>
+                <button onClick={handleClickBuyCurrency}>Add to wallet</button>
+                <button onClick={handleClickBackToMainPage}>Back to main</button>
                 <LineChart
                     width={1000}
                     height={500}
-                    data={currencyHistory}
+                    data={history}
                     margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
                     className='line-chart'
                 >

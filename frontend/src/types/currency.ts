@@ -1,10 +1,3 @@
-export interface CurrencyType {
-    id: string,
-    name: string,
-    changePercent24Hr: string,
-    priceUsd: string
-}
-
 export interface CurrencyState {
     currencies: any[],
     currentCurrency: {
@@ -44,7 +37,5 @@ interface SetCurrentCurrencyAction {
     }
 }
 
-export type CurrencyAction = FetchCurrenciesAction |
-    FetchCurrenciesSuccessAction |
-    FetchCurrenciesFailedAction |
+export type CurrencyAction = FetchCurrenciesAction | FetchCurrenciesSuccessAction | FetchCurrenciesFailedAction |
     SetCurrentCurrencyAction
