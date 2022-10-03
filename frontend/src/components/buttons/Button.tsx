@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 const StyledButton = styled.button`
   background-color: transparent;
-  padding: 2% 5%;
+  padding: 3% 7%;
   border: 0.01em solid black;
-  border-radius: 10px;
+  border-radius: 1em;
   cursor: pointer;
 `
 

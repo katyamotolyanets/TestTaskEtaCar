@@ -20,6 +20,8 @@ export const deleteCurrencyFromWallet = (id: string) => {
 
 export const initializeWallet = () => {
     return async (dispatch: Dispatch<WalletAction>) => {
+        if (!localStorage.getItem('wallet'))
+            localStorage.setItem('wallet', JSON.stringify([]));
         const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
         dispatch({type: WalletActionTypes.INITIALIZE_WALLET, payload: wallet})
     }

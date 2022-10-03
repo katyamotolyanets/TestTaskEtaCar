@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://katyamotolyanets.github.io/TestTaskEtaCar/",
+  "homepage": "https://katyamotolyanets.github.io/EtaCar/",
   "private": true,
   "dependencies": {
     "@redux-devtools/extension": "^3.2.3",

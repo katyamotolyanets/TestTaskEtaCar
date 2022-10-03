@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
-import Button from "../components/button/Button";
+import Button from "../components/buttons/Button";
 import Modal from "../components/modal/Modal";
 import Table, {StyledTd, StyledTr} from "../components/table/Table";
 

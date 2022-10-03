@@ -4,12 +4,13 @@ import axios from "axios";
 
 import './App.scss';
 import {useActions} from "./hooks/useActions";
+import {GlobalStyle} from "./styles/global";
+import {useTypedSelector} from "./hooks/useTypedSelector";
 import MainPage from "./pages/MainPage";
 import DetailPage from "./pages/DetailPage";
 import WalletModal from "./pages/WalletModal";
+import Navbar from "./pages/Navbar";
 import AddItemToWalletModal from "./pages/AddItemToWalletModal";
-import {GlobalStyle} from "./styles/global";
-import Navbar from "./components/header/Navbar";
 
 axios.defaults.baseURL = 'https://api.coincap.io/v2';
 

@@ -13,6 +13,12 @@ const StyledModal = styled.div`
   align-items: center;
   transform: scale(0);
   opacity: 1;
+  h2 {
+    font-size: 3vmin;
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
 `
 
 interface ModalComponentProps {

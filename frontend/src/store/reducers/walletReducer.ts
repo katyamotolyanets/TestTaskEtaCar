@@ -19,10 +19,12 @@ export const walletReducer = (state = initialState, action: WalletAction): Walle
                 loading: false,
             };
         case WalletActionTypes.DELETE_CURRENCY:
-            let elementsToDelete = wallet.filter(({id}: WalletCurrencyInfo) => id === action.payload);
-            elementsToDelete.forEach((element: WalletCurrencyInfo) => {
-                wallet.splice(wallet.indexOf(element), 1);
-            })
+            if (wallet.length > 0) {
+                let elementsToDelete = wallet.filter(({id}: WalletCurrencyInfo) => id === action.payload);
+                elementsToDelete.forEach((element: WalletCurrencyInfo) => {
+                    wallet.splice(wallet.indexOf(element), 1);
+                })
+            }
             localStorage.setItem('wallet', JSON.stringify(wallet));
             return {
                 ...state,
@@ -30,11 +32,13 @@ export const walletReducer = (state = initialState, action: WalletAction): Walle
             }
         case WalletActionTypes.GET_INITIAL_WALLET_PRICE:
             let initialWalletPrice = 0;
-            wallet.reduce((previousItem: WalletCurrencyInfo, currentItem: WalletCurrencyInfo) => {
-                initialWalletPrice += (Number(previousItem.price) * previousItem.count)
-                    + (Number(currentItem.price) * currentItem.count);
-                return previousItem;
-            });
+            if (wallet.length > 0) {
+                wallet.reduce((previousItem: WalletCurrencyInfo, currentItem: WalletCurrencyInfo) => {
+                    initialWalletPrice += (Number(previousItem.price) * previousItem.count)
+                        + (Number(currentItem.price) * currentItem.count);
+                    return previousItem;
+                });
+            }
             localStorage.setItem('initialWalletPrice', initialWalletPrice.toString());
             return {
                 ...state

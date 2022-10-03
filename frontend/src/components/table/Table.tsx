@@ -3,19 +3,27 @@ import styled from "styled-components";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
+  table-layout: fixed;
+  text-align: center;
 `
 
 export const StyledTd = styled.td`
     border-top: 0.01em solid #ccd2ff;
     position: relative;
-    padding: 1% 1% 1% 2%;
+    padding: 1%;
+    width: 10%;
+    &:first-child {
+      text-align: left;
+      padding-left: 5%;
+    }
 `
 
 export const StyledTr = styled.tr`
+  width: 7%;
   &:first-child {
     td {
+      background-color: #f2f3ff;
       border: none;
-
     }
   }
   &:hover,
@@ -44,7 +52,12 @@ const Table: React.FC<TableComponentProps> = ({children,
                     <StyledTd>{firstParam}</StyledTd>
                     <StyledTd>{secondParam}</StyledTd>
                     <StyledTd>{thirdParam}</StyledTd>
-                    <StyledTd>{fourthParam}</StyledTd>
+                    {
+                        fourthParam ?
+                            <StyledTd>{fourthParam}</StyledTd>
+                            :
+                            null
+                    }
                 </StyledTr>
                 {children}
             </tbody>
