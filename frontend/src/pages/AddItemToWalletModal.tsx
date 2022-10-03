@@ -11,7 +11,8 @@ const AddItemToWalletModal = () => {
     const {id, priceUsd} = currentCurrency;
 
     const handleChangeCountOfCurrency = (event: React.FormEvent<HTMLInputElement>) => {
-        setCountOfCurrency(event.currentTarget.value);
+        if (event.currentTarget.value.match(/^\d+\.?\d*$/))
+            setCountOfCurrency(event.currentTarget.value);
     };
 
     const handleClickAddToWallet = () => {
@@ -22,7 +23,9 @@ const AddItemToWalletModal = () => {
 
     return (
         <Modal isActive={currentCurrency.id} handleClickHideModal={() => setCurrentCurrency('', '')}>
-            <input type="text" value={countOfCurrency ? countOfCurrency : ''} onChange={handleChangeCountOfCurrency}/>
+            <input type="text"
+                   value={countOfCurrency ? countOfCurrency : ''}
+                   onChange={handleChangeCountOfCurrency}/>
             <button onClick={handleClickAddToWallet}>Add to wallet</button>
         </Modal>
 

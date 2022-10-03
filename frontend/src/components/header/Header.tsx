@@ -1,43 +1,37 @@
-import React from 'react';
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {formatStringToNumber} from "../../services/service";
-import {useActions} from "../../hooks/useActions";
+import React from "react";
+import styled from "styled-components";
 
-interface WalletCurrencyParameters {
-    id: string,
-    count: number
+const StyledHeader = styled.header`
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 1% 5%;
+  width: 100%;
+  .top-currencies-container {
+    display: flex;  
+    p {
+      padding: 0 1%;
+    }
+  }
+  div {
+    white-space: nowrap;
+    padding: 0 1%;
+  }
+`
+
+interface HeaderComponentProps {
+    children: any,
+    topCurrencies: any
 }
 
-const Header: React.FC = () => {
-    const {setWalletModalVisible} = useActions();
-    const {currencies} = useTypedSelector(state => state.currencies);
-    const walletCurrencies = JSON.parse(localStorage.getItem('wallet') as string)
-    const initialWalletPrice = JSON.parse(localStorage.getItem('initialWalletPrice') as string)
-    let walletCurrentPrice = 0
-
-    walletCurrencies.forEach(({id, count}: WalletCurrencyParameters) => {
-        let foundCurrency = currencies.find(element => element.id === id);
-        walletCurrentPrice += (Number(foundCurrency?.priceUsd) * count);
-    })
-
-    let difference = walletCurrentPrice - initialWalletPrice
-    let differenceInPercent = formatStringToNumber(((difference / walletCurrentPrice) * 100).toString())
-
-    const handleClickShowModal = () => {
-        setWalletModalVisible()
-    }
-
+const Header: React.FC<HeaderComponentProps> = ({children, topCurrencies}) => {
     return (
-        <header>
+        <StyledHeader>
             <div className='top-currencies-container'>
-                {currencies.slice(0, 3).map(({id, symbol, priceUsd}) => (
-                    <p key={id}>{symbol} = {formatStringToNumber(priceUsd)}$</p>
-                ))}
+                {topCurrencies}
             </div>
-            <div>Wallet price = {formatStringToNumber(walletCurrentPrice.toString())}$</div>
-            <div>{difference > 0 ? '+' : ''}{formatStringToNumber(difference.toString())}$ ({differenceInPercent}%)</div>
-            <button onClick={handleClickShowModal}>Wallet</button>
-        </header>
+            {children}
+        </StyledHeader>
     );
 };
 
