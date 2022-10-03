@@ -4,8 +4,8 @@ import axios from "axios";
 
 import './App.scss';
 import {useActions} from "./hooks/useActions";
-import MainPage from "./components/main/MainPage";
-import DetailPage from "./components/detail-page/DetailPage";
+import MainPage from "./pages/MainPage";
+import DetailPage from "./pages/DetailPage";
 import Header from "./components/header/Header";
 import WalletModal from "./components/wallet-modal-window/WalletModal";
 import AddItemToWalletModal from "./components/add-item-to-wallet-modal/AddItemToWalletModal";

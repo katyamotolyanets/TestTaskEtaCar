@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 
-import TableElement from "./TableElement";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useActions} from "../../hooks/useActions";
+import TableElement from "../components/main/TableElement";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useActions} from "../hooks/useActions";
 
 interface CurrencyType {
     id: string,

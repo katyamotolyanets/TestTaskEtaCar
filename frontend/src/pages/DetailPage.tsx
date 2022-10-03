@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router";
 import {CartesianGrid, Line, LineChart, Tooltip, XAxis} from 'recharts';
-import {formatStringToDate, formatStringToNumber} from "../../services/service";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useActions} from "../../hooks/useActions";
+import {formatStringToDate, formatStringToNumber} from "../services/service";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useActions} from "../hooks/useActions";
 
 const DetailPage: React.FC = () => {
     const {id} = useParams()
