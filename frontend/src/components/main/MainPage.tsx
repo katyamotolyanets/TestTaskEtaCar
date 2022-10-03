@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 
 import TableElement from "./TableElement";
-import {fetchCurrenciesData} from "../../store/actions/currencies";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions} from "../../hooks/useActions";
 

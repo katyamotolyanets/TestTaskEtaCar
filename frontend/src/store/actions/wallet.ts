@@ -1,11 +1,5 @@
 import {Dispatch} from "redux";
-import {WalletAction, WalletActionTypes, WalletCurrencyInfo} from "../../types/wallet";
-
-interface t {
-    id: string,
-    price: string,
-    count: number
-}
+import {WalletAction, WalletActionTypes} from "../../types/wallet";
 
 export const addCurrencyToWallet = (id: string | null, priceUsd: string | null, count: number) => {
     return async (dispatch: Dispatch<WalletAction>) => {
