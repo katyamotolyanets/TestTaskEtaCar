@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {formatStringToNumber} from "../../services/service";
 import {useActions} from "../../hooks/useActions";
+import Button from "../button/Button";
+import {StyledTd, StyledTr} from "../table/Table";
 
 export interface ElementComponentProps {
     id: string
@@ -18,14 +20,14 @@ const TableElement = ({id, name, changePercentDay, priceUsd}: ElementComponentPr
     };
 
     return (
-        <tr key={id} className='table-row'>
-            <td><Link to={{pathname:`/currency/${id}`}}>{name}</Link></td>
-            <td><Link to={{pathname:`/currency/${id}`}}>{formatStringToNumber(changePercentDay)}</Link></td>
-            <td><Link to={{pathname:`/currency/${id}`}}>{formatStringToNumber(priceUsd)}</Link></td>
-            <td>
-                <button onClick={handleClickBuyCurrency}>Buy</button>
-            </td>
-        </tr>
+        <StyledTr key={id}>
+            <StyledTd><Link to={{pathname:`/currency/${id}`}}>{name}</Link></StyledTd>
+            <StyledTd><Link to={{pathname:`/currency/${id}`}}>{formatStringToNumber(changePercentDay)}</Link></StyledTd>
+            <StyledTd><Link to={{pathname:`/currency/${id}`}}>{formatStringToNumber(priceUsd)}</Link></StyledTd>
+            <StyledTd>
+                <Button onClick={handleClickBuyCurrency}>Buy</Button>
+            </StyledTd>
+        </StyledTr>
     );
 };
 

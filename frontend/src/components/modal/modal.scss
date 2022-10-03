@@ -1,0 +1,13 @@
+.modal__content {
+  padding: 2% 5%;
+  border-radius: 1em;
+  background-color: #fff;
+  height: 50%;
+  width: 30%;
+  h2 {
+    text-align: center;
+  }
+}
+.modal.active {
+  transform: scale(1);
+}

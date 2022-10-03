@@ -4,6 +4,14 @@ import {CartesianGrid, Line, LineChart, Tooltip, XAxis} from 'recharts';
 import {formatStringToDate, formatStringToNumber} from "../services/service";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
+import styled from "styled-components";
+
+const StyledDetailPage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 const DetailPage: React.FC = () => {
     const {id} = useParams()
@@ -39,7 +47,7 @@ const DetailPage: React.FC = () => {
     };
 
     return (
-        <div className='detail-page-container'>
+        <StyledDetailPage>
             <h2>{name} ({symbol})</h2>
             <div className='detail-page-info'>
                 <div>Rank: {rank}</div>
@@ -64,7 +72,7 @@ const DetailPage: React.FC = () => {
                     <Line type="monotone" dataKey="priceUsd" stroke="#808eff" yAxisId={0} />
                 </LineChart>
             </div>
-        </div>
+        </StyledDetailPage>
     );
 };
 
