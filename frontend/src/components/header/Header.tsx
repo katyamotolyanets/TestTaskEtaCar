@@ -8,7 +8,8 @@ const StyledHeader = styled.header`
   padding: 1% 5%;
   width: 100%;
   .top-currencies-container {
-    display: flex;  
+    display: flex;
+    margin: 2%;
     p {
       padding: 0 1%;
     }
@@ -16,6 +17,11 @@ const StyledHeader = styled.header`
   div {
     white-space: nowrap;
     padding: 0 1%;
+  }
+  @media screen and (max-width: 900px) {
+    .top-currencies-container {
+      flex-wrap: wrap;
+    }
   }
 `
 
