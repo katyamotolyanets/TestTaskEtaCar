@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 import Button from "../components/buttons/Button";
@@ -16,9 +16,6 @@ const WalletModal:React.FC = () => {
         return previousValue;
     }, {})
 
-    useEffect(() => {
-
-    }, [currencies])
     const handleClickHideModal = () => {
         setWalletModalInvisible();
     };
