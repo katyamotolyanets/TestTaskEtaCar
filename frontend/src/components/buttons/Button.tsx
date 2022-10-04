@@ -11,7 +11,7 @@ const StyledButton = styled.button`
 
 interface ButtonComponentProps {
     children: string,
-    onClick: () => void
+    onClick?: () => void
 }
 
 const Button: React.FC<ButtonComponentProps> = ({children, onClick}) => {

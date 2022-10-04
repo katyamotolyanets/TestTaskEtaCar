@@ -14,7 +14,9 @@ const StyledModal = styled.div`
   transform: scale(0);
   opacity: 1;
   h2 {
+    text-align: center;
     font-size: 3vmin;
+    padding: 10% 0;
     &:first-letter {
       text-transform: uppercase;
     }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import {useActions} from "../hooks/useActions";
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {formatStringToNumber} from "../services/service";
@@ -17,7 +17,8 @@ const AddItemToWalletModal = () => {
             setCountOfCurrency(event.currentTarget.value);
     };
 
-    const handleClickAddToWallet = () => {
+    const handleSubmitAddToWallet = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         addCurrencyToWallet(id, priceUsd, Number(formatStringToNumber(countOfCurrency)));
         setCurrentCurrency('', '')
         setCountOfCurrency(null)
@@ -26,10 +27,10 @@ const AddItemToWalletModal = () => {
     return (
         <Modal isActive={currentCurrency.id} handleClickHideModal={() => setCurrentCurrency('', '')}>
             <h2>{currentCurrency.id}</h2>
-            <div>
+            <form onSubmit={handleSubmitAddToWallet}>
                 <Input value={countOfCurrency} handleChange={handleChangeCountOfCurrency}/>
-                <Button onClick={handleClickAddToWallet}>Add to wallet</Button>
-            </div>
+                <Button>Add to wallet</Button>
+            </form>
         </Modal>
 
     );
