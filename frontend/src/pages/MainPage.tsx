@@ -16,35 +16,33 @@ interface CurrencyType {
 const ITEMS_PER_PAGE = 25;
 
 const MainPage: React.FC = () => {
-    const {fetchCurrenciesData} = useActions();
-    const {currencies} = useTypedSelector(state => state.currencies);
-    const [currentPage, setCurrentPage] = useState(1);
-    const lastItemIndex = currentPage * ITEMS_PER_PAGE;
-    const currentItems = currencies.slice(0, lastItemIndex);
+    const {fetchCurrentCurrencies} = useActions();
+    const {currentCurrenciesOnPage} = useTypedSelector(state => state.currencies);
+    const [offset, setOffset] = useState(0)
+
+    useEffect(() => {
+        fetchCurrentCurrencies(ITEMS_PER_PAGE, offset);
+    }, [offset]);
 
     useEffect(() => {
         document.addEventListener('scroll', scrollHandler);
         return function () {
             document.removeEventListener('scroll', scrollHandler);
         }
-    }, [currentPage]);
+    }, [offset]);
 
     const scrollHandler = () => {
         if (document.documentElement.scrollHeight -
             (document.documentElement.scrollTop + window.innerHeight) < 100) {
-            setCurrentPage(currentPage + 1);
+            setOffset(offset + ITEMS_PER_PAGE);
         }
     };
-
-    useEffect(() => {
-        fetchCurrenciesData();
-    }, []);
 
     return (
         <MainContainer>
             <Table firstParam='Name' secondParam='Changes' thirdParam='Price' fourthParam='Add to wallet'>
                 {
-                    currentItems?.map(({id, name, changePercent24Hr, priceUsd}: CurrencyType) => {
+                    currentCurrenciesOnPage?.map(({id, name, changePercent24Hr, priceUsd}: CurrencyType) => {
                         return <TableElement id={id}
                                          name={name}
                                          changePercentDay={changePercent24Hr}
