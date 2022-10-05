@@ -22,6 +22,7 @@ const Navbar: React.FC = () => {
             let foundCurrency = currencies?.find(element => element.id === id);
             walletCurrentPrice += (Number(foundCurrency?.priceUsd) * count);
         })
+        localStorage.setItem('currentWalletPrice', walletCurrentPrice.toString());
     }
 
     let difference = walletCurrentPrice - initialWalletPrice

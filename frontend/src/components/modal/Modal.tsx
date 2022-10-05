@@ -11,13 +11,17 @@ const StyledModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   h2 {
     text-align: center;
     font-size: 3vmin;
-    padding: 10% 0;
+    margin: 5% 0;
     &:first-letter {
       text-transform: uppercase;
     }
+  }
+  div {
+    margin: 5% 0;
   }
 `
 
@@ -42,11 +46,11 @@ const Modal: React.FC<ModalComponentProps> = ({children, isActive, handleClickHi
 
     return (
         isActive ?
-        <StyledModal className='modal' onClick={handleClickHideModal}>
-            <div className='modal__content' onClick={e => e.stopPropagation()}>
-                {children}
-            </div>
-        </StyledModal>
+            <StyledModal className='modal' onClick={handleClickHideModal}>
+                <div className='modal__content' onClick={e => e.stopPropagation()}>
+                    {children}
+                </div>
+            </StyledModal>
             : null
     );
 };
