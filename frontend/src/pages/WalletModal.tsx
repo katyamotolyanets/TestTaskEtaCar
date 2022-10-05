@@ -30,21 +30,29 @@ const WalletModal:React.FC = () => {
         <Modal isActive={visible} handleClickHideModal={handleClickHideModal}>
             <h2>My cryptocurrencies</h2>
             <div>Balance: {formatStringToNumber(currentWalletPrice)} USD</div>
-            <Table firstParam='Name' secondParam='Count' thirdParam='Delete'>
-                {
-                    Object.entries(uniqueCurrencies)?.map(entry => {
-                        return <StyledTr>
-                            <StyledTd>{entry[0]}</StyledTd>
-                            <StyledTd>{entry[1] as string}</StyledTd>
-                            <StyledTd>
-                                <Button onClick={() => handleClickDeleteCurrency(entry[0])}>
-                                    Delete
-                                </Button>
-                            </StyledTd>
-                        </StyledTr>
-                    })
-                }
-            </Table>
+            {
+                currencies.length > 0 ?
+                    <Table firstParam='Name' secondParam='Count' thirdParam='Delete'>
+                        {
+                            Object.entries(uniqueCurrencies)?.map(entry => {
+                                return <StyledTr>
+                                    <StyledTd>{entry[0]}</StyledTd>
+                                    <StyledTd>{entry[1] as string}</StyledTd>
+                                    <StyledTd>
+                                        <Button onClick={() => handleClickDeleteCurrency(entry[0])}>
+                                            Delete
+                                        </Button>
+                                    </StyledTd>
+                                </StyledTr>
+                            })
+                        }
+                    </Table>
+                    :
+                    <div>
+                        You haven't bought anything yet :(
+                    </div>
+            }
+
         </Modal>
     );
 };
