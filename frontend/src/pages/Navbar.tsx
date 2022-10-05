@@ -34,9 +34,9 @@ const Navbar: React.FC = () => {
     return (
         <Header topCurrencies={currencies.slice(0, 3).map(({id, symbol, priceUsd}) => (
                 <p key={id}>{symbol} = {formatStringToNumber(priceUsd)} USD</p>))}>
-            <div>Wallet price = {formatStringToNumber(walletCurrentPrice.toString())} USD</div>
-            <div>{difference > 0 ? '+' : ''}{formatStringToNumber(difference.toString())} USD
-                ({differenceInPercent}%)</div>
+            <div>Wallet price = {formatStringToNumber(walletCurrentPrice.toString() || '0')} USD</div>
+            <div>{difference > 0 ? '+' : ''}{formatStringToNumber(difference.toString() || '0')} USD
+                ({differenceInPercent || 0}%)</div>
             <WalletButton handleClick={handleClickShowModal}>My wallet</WalletButton>
         </Header>
     );

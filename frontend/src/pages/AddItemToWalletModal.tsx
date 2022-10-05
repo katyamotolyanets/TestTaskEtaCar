@@ -24,8 +24,12 @@ const AddItemToWalletModal = () => {
         setCountOfCurrency(null)
     };
 
+    const handleClickHideModal = () => {
+        setCurrentCurrency('', '')
+    }
+
     return (
-        <Modal isActive={currentCurrency.id} handleClickHideModal={() => setCurrentCurrency('', '')}>
+        <Modal isActive={currentCurrency.id} handleClickHideModal={handleClickHideModal}>
             <h2>{currentCurrency.id}</h2>
             <form onSubmit={handleSubmitAddToWallet}>
                 <Input value={countOfCurrency} handleChange={handleChangeCountOfCurrency}/>

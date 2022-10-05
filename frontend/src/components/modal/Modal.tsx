@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 
 const StyledModal = styled.div`
@@ -11,8 +11,6 @@ const StyledModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: scale(0);
-  opacity: 1;
   h2 {
     text-align: center;
     font-size: 3vmin;
@@ -30,13 +28,26 @@ interface ModalComponentProps {
 }
 
 const Modal: React.FC<ModalComponentProps> = ({children, isActive, handleClickHideModal}) => {
+    useEffect(() => {
+        document.addEventListener<any>('keydown', handleKeyDown);
+        return function () {
+            document.removeEventListener<any>('keydown', handleKeyDown);
+        }
+    }, [isActive]);
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+        if (e.keyCode === 27)
+            handleClickHideModal()
+    };
+
     return (
-        <StyledModal className={isActive ? 'modal active' : 'modal'}
-             onClick={handleClickHideModal}>
+        isActive ?
+        <StyledModal className='modal' onClick={handleClickHideModal}>
             <div className='modal__content' onClick={e => e.stopPropagation()}>
                 {children}
             </div>
         </StyledModal>
+            : null
     );
 };
 
