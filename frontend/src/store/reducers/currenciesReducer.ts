@@ -35,7 +35,6 @@ export const currenciesReducer = (state = initialState, action: CurrencyAction):
                 error: action.payload
             }
         case CurrenciesActionTypes.INITIALIZE_CURRENCIES:
-            console.log(action.payload)
             return {
                 ...state,
                 currencies: action.payload,
