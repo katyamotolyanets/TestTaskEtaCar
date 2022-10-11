@@ -9,8 +9,6 @@ const StyledConfirmModal = styled.div`
   left: 35vw;
   border-radius: 1em;
   background-color: #fff;
-  height: 20%;
-  width: 30%;
   max-height: 50%;
   max-width: 30%;
   form {

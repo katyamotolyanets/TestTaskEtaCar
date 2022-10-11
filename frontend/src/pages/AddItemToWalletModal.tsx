@@ -8,20 +8,19 @@ import Button from "../components/buttons/Button";
 
 const AddItemToWalletModal = () => {
     const {setCurrentCurrency, addCurrencyToWallet} = useActions();
-    const [countOfCurrency, setCountOfCurrency] = useState<string | null>(null);
+    const [countOfCurrency, setCountOfCurrency] = useState<string | undefined>(undefined);
     const {currentCurrency} = useTypedSelector(state => state.currencies);
     const {id, priceUsd} = currentCurrency;
 
     const handleChangeCountOfCurrency = (event: React.FormEvent<HTMLInputElement>) => {
-        if (event.currentTarget.value.match(/^\d+\.?\d*$/))
-            setCountOfCurrency(event.currentTarget.value);
+        setCountOfCurrency(event.currentTarget.value);
     };
 
     const handleSubmitAddToWallet = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        addCurrencyToWallet(id, priceUsd, Number(formatStringToNumber(countOfCurrency)));
+        addCurrencyToWallet(id, priceUsd, Number(countOfCurrency));
         setCurrentCurrency('', '')
-        setCountOfCurrency(null)
+        setCountOfCurrency(undefined)
     };
 
     const handleClickHideModal = () => {

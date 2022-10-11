@@ -3,7 +3,7 @@
   border-radius: 1em;
   background-color: #fff;
   max-height: 50%;
-  max-width: 30%;
+  max-width: 40%;
   overflow-y: auto;
   table {
     width: 100%;
@@ -24,5 +24,23 @@
       margin-left: 2%;
       max-width: 100%;
     }
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .modal__content {
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .modal__content {
+    max-width: 55%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal__content {
+    max-width: 60%;
   }
 }

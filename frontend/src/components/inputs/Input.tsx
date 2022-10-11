@@ -9,15 +9,16 @@ const StyledInput = styled.input`
 `
 
 interface InputComponentProps {
-    value: string | null,
-    handleChange: any
+    value: string | undefined,
+    handleChange: (event: React.FormEvent<HTMLInputElement>) => void
 }
 
 const Input: React.FC<InputComponentProps> = ({value, handleChange}) => {
     return (
-        <StyledInput type="text"
+        <StyledInput type="number"
                value={value ? value : ''}
-               onChange={handleChange}/>
+               onChange={handleChange}
+               max="999999999999999"/>
     );
 };
 

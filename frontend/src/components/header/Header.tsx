@@ -18,9 +18,12 @@ const StyledHeader = styled.header`
     white-space: nowrap;
     padding: 0 1%;
   }
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1100px) {
     .top-currencies-container {
       flex-wrap: wrap;
+    }
+    div {
+      white-space: normal;
     }
   }
 `
