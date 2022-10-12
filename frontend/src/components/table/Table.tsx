@@ -17,7 +17,10 @@ export const StyledTd = styled.td`
   &:first-child {
       text-align: left;
       padding-left: 5%;
-    }
+  }
+  &:focus-within {
+    outline: 1px solid #99a5ff;
+  }
 `
 
 export const StyledTr = styled.tr`
@@ -32,7 +35,8 @@ export const StyledTr = styled.tr`
   &:hover,
   &:focus-within {
     background: #f2f3ff;
-  }`
+  }
+`
 
 interface TableComponentProps {
     children: any,
