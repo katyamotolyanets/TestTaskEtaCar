@@ -18,7 +18,7 @@ const StyledHeader = styled.header`
     white-space: nowrap;
     padding: 0 1%;
   }
-  @media screen and (max-width: 1100px) {
+  @media screen and (max-width: 1550px) {
     .top-currencies-container {
       flex-wrap: wrap;
     }

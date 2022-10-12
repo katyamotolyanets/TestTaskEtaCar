@@ -27,20 +27,25 @@
   }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1800px) {
   .modal__content {
     max-width: 50%;
   }
 }
-
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1500px) {
   .modal__content {
     max-width: 55%;
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1350px) {
   .modal__content {
     max-width: 60%;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .modal__content {
+    max-width: 65%;
   }
 }

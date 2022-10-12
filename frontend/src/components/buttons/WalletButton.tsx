@@ -6,6 +6,7 @@ const StyledWalletButton = styled.button`
   background-color: #e6e8ff;
   border: 0.01em solid #e6e8ff;
   border-radius: 10px;
+  cursor: pointer;
 `
 
 const WalletButton: React.FC<any> = ({children, handleClick}) => {
