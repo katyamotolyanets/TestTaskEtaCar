@@ -1,6 +1,13 @@
 import {Dispatch} from "redux";
 import {WalletAction, WalletActionTypes} from "../../types/wallet";
 
+const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
+
+interface WalletCurrencyParameters {
+    id: string,
+    count: number
+}
+
 export const addCurrencyToWallet = (id: string | null, priceUsd: string | null, count: number) => {
     return async (dispatch: Dispatch<WalletAction>) => {
         const currencyInfo = {
@@ -22,7 +29,6 @@ export const initializeWallet = () => {
     return async (dispatch: Dispatch<WalletAction>) => {
         if (!localStorage.getItem('wallet'))
             localStorage.setItem('wallet', JSON.stringify([]));
-        const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
         dispatch({type: WalletActionTypes.INITIALIZE_WALLET, payload: wallet})
     }
 }
@@ -42,5 +48,20 @@ export const setWalletModalInvisible = () => {
 export const setWalletModalVisible = () => {
     return async (dispatch: Dispatch<WalletAction>) => {
         dispatch({type: WalletActionTypes.SET_MODAL_VISIBLE})
+    }
+}
+
+export const setCurrentWalletPrice = () => {
+    return async (dispatch: Dispatch<WalletAction>) => {
+        const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
+        const currencies = JSON.parse(localStorage.getItem('currencies') as string) || [];
+        let newWalletPrice = 0;
+        await wallet?.forEach(({id, count}: WalletCurrencyParameters) => {
+            if (currencies.length > 0) {
+                let foundCurrency = currencies.find((element: WalletCurrencyParameters) => element.id === id);
+                newWalletPrice += (Number(foundCurrency?.priceUsd) * count);
+            }
+        })
+        await dispatch({type: WalletActionTypes.SET_CURRENT_WALLET_PRICE, payload: newWalletPrice})
     }
 }

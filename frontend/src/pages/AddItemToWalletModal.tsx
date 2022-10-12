@@ -1,13 +1,12 @@
 import React, {FormEvent, useState} from 'react';
 import {useActions} from "../hooks/useActions";
 import {useTypedSelector} from "../hooks/useTypedSelector";
-import {formatStringToNumber} from "../services/service";
 import Modal from "../components/modal/Modal";
 import Input from "../components/inputs/Input";
 import Button from "../components/buttons/Button";
 
 const AddItemToWalletModal = () => {
-    const {setCurrentCurrency, addCurrencyToWallet} = useActions();
+    const {setCurrentCurrency, addCurrencyToWallet, setCurrentWalletPrice, fetchWalletCurrenciesData} = useActions();
     const [countOfCurrency, setCountOfCurrency] = useState<string | undefined>(undefined);
     const {currentCurrency} = useTypedSelector(state => state.currencies);
     const {id, priceUsd} = currentCurrency;
@@ -19,6 +18,8 @@ const AddItemToWalletModal = () => {
     const handleSubmitAddToWallet = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         addCurrencyToWallet(id, priceUsd, Number(countOfCurrency));
+        fetchWalletCurrenciesData();
+        setCurrentWalletPrice();
         setCurrentCurrency('', '')
         setCountOfCurrency(undefined)
     };

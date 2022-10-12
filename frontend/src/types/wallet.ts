@@ -8,7 +8,8 @@ export interface WalletType {
 export interface WalletState {
     currencies: any[],
     loading: boolean,
-    visible: boolean
+    visible: boolean,
+    currentWalletPrice: number,
 }
 
 export interface WalletCurrencyInfo {
@@ -24,6 +25,7 @@ export enum WalletActionTypes {
     SET_MODAL_VISIBLE = 'SET_MODAL_VISIBLE',
     SET_MODAL_INVISIBLE = 'SET_MODAL_INVISIBLE',
     INITIALIZE_WALLET = 'INITIALIZE_WALLET',
+    SET_CURRENT_WALLET_PRICE = 'SET_CURRENT_WALLET_PRICE',
 }
 
 interface AddCurrencyAction {
@@ -40,23 +42,28 @@ interface DeleteCurrencyAction {
     payload: string
 }
 
-interface GetInitialWalletPrice {
+interface GetInitialWalletPriceAction {
     type: WalletActionTypes.GET_INITIAL_WALLET_PRICE
 }
 
-interface SetModalVisible {
+interface SetModalVisibleAction {
     type: WalletActionTypes.SET_MODAL_VISIBLE
 }
 
-interface SetModalInvisible {
+interface SetModalInvisibleAction {
     type: WalletActionTypes.SET_MODAL_INVISIBLE
 }
 
-interface InitializeWallet {
+interface InitializeWalletAction {
     type: WalletActionTypes.INITIALIZE_WALLET,
     payload: any[]
 }
 
+interface SetCurrentWalletPriceAction {
+    type: WalletActionTypes.SET_CURRENT_WALLET_PRICE,
+    payload: number
+}
 
-export type WalletAction = AddCurrencyAction | GetInitialWalletPrice | SetModalVisible |
-    SetModalInvisible | InitializeWallet | DeleteCurrencyAction
+
+export type WalletAction = AddCurrencyAction | GetInitialWalletPriceAction | SetModalVisibleAction |
+    SetModalInvisibleAction | InitializeWalletAction | DeleteCurrencyAction | SetCurrentWalletPriceAction

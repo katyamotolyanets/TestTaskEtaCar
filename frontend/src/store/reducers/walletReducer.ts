@@ -3,7 +3,8 @@ import {WalletAction, WalletActionTypes, WalletCurrencyInfo, WalletState} from '
 const initialState: WalletState = {
     currencies: [],
     loading: false,
-    visible: false
+    visible: false,
+    currentWalletPrice: 0,
 };
 
 const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
@@ -19,12 +20,10 @@ export const walletReducer = (state = initialState, action: WalletAction): Walle
                 loading: false,
             };
         case WalletActionTypes.DELETE_CURRENCY:
-            if (wallet.length > 0) {
-                let elementsToDelete = wallet.filter(({id}: WalletCurrencyInfo) => id === action.payload);
-                elementsToDelete.forEach((element: WalletCurrencyInfo) => {
-                    wallet.splice(wallet.indexOf(element), 1);
-                })
-            }
+            let elementsToDelete = wallet?.filter(({id}: WalletCurrencyInfo) => id === action.payload);
+            elementsToDelete.forEach((element: WalletCurrencyInfo) => {
+                wallet.splice(wallet.indexOf(element), 1);
+            })
             localStorage.setItem('wallet', JSON.stringify(wallet));
             return {
                 ...state,
@@ -57,6 +56,12 @@ export const walletReducer = (state = initialState, action: WalletAction): Walle
             return {
                 ...state,
                 currencies: action.payload
+            }
+        case WalletActionTypes.SET_CURRENT_WALLET_PRICE:
+            localStorage.setItem('currentWalletPrice', action.payload.toString())
+            return {
+                ...state,
+                currentWalletPrice: action.payload
             }
         default:
             return state;

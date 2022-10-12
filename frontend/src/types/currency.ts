@@ -14,7 +14,8 @@ export enum CurrenciesActionTypes {
     FETCH_CURRENT_CURRENCIES_SUCCESS = 'FETCH_CURRENT_CURRENCIES_SUCCESS',
     FETCH_CURRENCIES_FAILED = 'FETCH_CURRENCIES_FAILED',
     SET_CURRENT_CURRENCY = 'SET_CURRENT_CURRENCY',
-    INITIALIZE_CURRENCIES = 'INITIALIZE_CURRENCIES'
+    INITIALIZE_CURRENCIES = 'INITIALIZE_CURRENCIES',
+    ADD_TO_CURRENCIES = 'ADD_TO_CURRENCIES'
 }
 
 interface FetchCurrenciesAction {
@@ -44,5 +45,10 @@ interface SetCurrentCurrencyAction {
     }
 }
 
+interface AddToCurrenciesAction {
+    type: CurrenciesActionTypes.ADD_TO_CURRENCIES,
+    payload: any[]
+}
+
 export type CurrencyAction = FetchCurrenciesAction | FetchCurrentCurrenciesSuccessAction | FetchCurrenciesFailedAction |
-    SetCurrentCurrencyAction | InitializeCurrenciesAction
+    SetCurrentCurrencyAction | InitializeCurrenciesAction | AddToCurrenciesAction

@@ -1,43 +1,47 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {formatStringToNumber} from "../services/service";
 import {useActions} from "../hooks/useActions";
 import Header from "../components/header/Header";
 import WalletButton from "../components/buttons/WalletButton";
 
-interface WalletCurrencyParameters {
-    id: string,
-    count: number
-}
-
 const Navbar: React.FC = () => {
-    const {setWalletModalVisible} = useActions();
+    const {setWalletModalVisible, setCurrentWalletPrice, fetchWalletCurrenciesData} = useActions();
     const {currencies} = useTypedSelector(state => state.currencies);
-    const walletCurrencies = JSON.parse(localStorage.getItem('wallet') as string) || []
-    const initialWalletPrice = JSON.parse(localStorage.getItem('initialWalletPrice') as string)
-    let walletCurrentPrice = 0
+    const {currentWalletPrice} = useTypedSelector(state => state.wallet);
+    const initialWalletPrice = JSON.parse(localStorage.getItem('initialWalletPrice') as string);
 
-    if (walletCurrencies?.length > 0) {
-        walletCurrencies?.forEach(({id, count}: WalletCurrencyParameters) => {
-            let foundCurrency = currencies?.find(element => element.id === id);
-            walletCurrentPrice += (Number(foundCurrency?.priceUsd) * count);
+    const uniqueIds: string[] = [];
+    const topCurrencies = currencies
+        .filter(element => {
+            const isDuplicate = uniqueIds.includes(element.id);
+            if (!isDuplicate) {
+                uniqueIds.push(element.id);
+                return true;
+            }
+            return false;
         })
-    }
-    localStorage.setItem('currentWalletPrice', walletCurrentPrice.toString());
+        .sort((previous, current) => Number(previous.rank) - Number(current.rank))
+        .slice(0, 3);
 
-    let difference = walletCurrentPrice - initialWalletPrice
-    let differenceInPercent = formatStringToNumber(((difference / walletCurrentPrice) * 100).toString())
+    useEffect(() => {
+        fetchWalletCurrenciesData() ;
+        setCurrentWalletPrice();
+    }, [])
+
+    let difference = currentWalletPrice - Number(initialWalletPrice)
+    let differenceInPercent = formatStringToNumber(((difference / currentWalletPrice) * 100).toString())
 
     const handleClickShowModal = () => {
         setWalletModalVisible()
     }
 
     return (
-        <Header topCurrencies={currencies.slice(0, 3).map(({id, symbol, priceUsd}) => (
+        <Header topCurrencies={topCurrencies.map(({id, symbol, priceUsd}) => (
                 <p key={id}>{symbol} = {formatStringToNumber(priceUsd)} USD</p>))}>
-            <div>Wallet price = {formatStringToNumber(walletCurrentPrice.toString() || '0')} USD</div>
+            <div>Wallet price = {formatStringToNumber(currentWalletPrice.toString() || '0')} USD</div>
             <div>{difference > 0 ? '+' : ''}{formatStringToNumber(difference.toString() || '0')} USD
-                ({differenceInPercent || 0}%)</div>
+                ({differenceInPercent >= 100 ? '+100' : difference < 0 ? '-100' : 0}%)</div>
             <WalletButton handleClick={handleClickShowModal}>My wallet</WalletButton>
         </Header>
     );

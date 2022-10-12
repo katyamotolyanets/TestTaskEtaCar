@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 import {formatStringToNumber} from "../services/service";
@@ -7,12 +7,17 @@ import Modal from "../components/modal/Modal";
 import Table, {StyledTd, StyledTr} from "../components/table/Table";
 import ConfirmModal from "../components/modal/ConfirmModal";
 
+
 const WalletModal:React.FC = () => {
     const [isConfirmModalShown, setConfirmModalShown] = useState(false);
     const [itemToDelete, setItemToDelete] = useState<string | undefined>(undefined);
-    const {visible, currencies} = useTypedSelector(state => state.wallet);
-    const {setWalletModalInvisible, deleteCurrencyFromWallet} = useActions();
-    const currentWalletPrice = localStorage.getItem('currentWalletPrice') || '0';
+    const {visible, currencies, currentWalletPrice} = useTypedSelector(state => state.wallet);
+    const {setWalletModalInvisible, deleteCurrencyFromWallet, setCurrentWalletPrice, fetchWalletCurrenciesData} = useActions();
+
+    useEffect(() => {
+        fetchWalletCurrenciesData();
+        setCurrentWalletPrice();
+    }, [])
 
     const uniqueCurrencies = currencies.reduce((previousValue, currentValue) => {
         previousValue[currentValue.id] = previousValue[currentValue.id] || 0;
@@ -27,6 +32,9 @@ const WalletModal:React.FC = () => {
 
     const handleClickDeleteCurrency = (id: string | undefined) => {
         if (id != undefined) deleteCurrencyFromWallet(id);
+        fetchWalletCurrenciesData();
+        setCurrentWalletPrice();
+        fetchWalletCurrenciesData();
     };
 
     const showConfirmModal = (id: string) => {
@@ -43,7 +51,7 @@ const WalletModal:React.FC = () => {
                 :
                 <div>
                     <h2>My cryptocurrencies</h2>
-                    <div>Balance: {formatStringToNumber(currentWalletPrice)} USD</div>
+                    <div>Balance: {formatStringToNumber(currentWalletPrice.toString())} USD</div>
                     {
                         currencies.length > 0 ?
                             <Table firstParam='Name' secondParam='Count' thirdParam='Delete'>

@@ -14,11 +14,12 @@ import AddItemToWalletModal from "./pages/AddItemToWalletModal";
 axios.defaults.baseURL = 'https://api.coincap.io/v2';
 
 const App: React.FC = () => {
-    const {fetchWalletCurrenciesData, initializeWallet, calculateInitialWalletPrice} = useActions();
+    const {fetchWalletCurrenciesData, initializeWallet, calculateInitialWalletPrice, setCurrentWalletPrice} = useActions();
 
     useEffect(() => {
-        fetchWalletCurrenciesData();
         initializeWallet();
+        fetchWalletCurrenciesData();
+        setCurrentWalletPrice();
         calculateInitialWalletPrice();
     }, [])
 

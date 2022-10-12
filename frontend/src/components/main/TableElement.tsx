@@ -13,10 +13,11 @@ export interface ElementComponentProps {
 }
 
 const TableElement = ({id, name, changePercentDay, priceUsd}: ElementComponentProps) => {
-    const {setCurrentCurrency} = useActions();
+    const {setCurrentCurrency, addToCurrencies} = useActions();
 
     const handleClickBuyCurrency = () => {
         setCurrentCurrency(id, priceUsd)
+        addToCurrencies(id);
     };
 
     return (
