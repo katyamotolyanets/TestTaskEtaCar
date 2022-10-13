@@ -1,10 +1,19 @@
+type CurrencyType = {
+    id: string,
+    name: string,
+    changePercent24Hr: string,
+    priceUsd: string,
+    symbol: string,
+    rank: string
+};
+
 export interface CurrencyState {
-    currencies: any[],
+    currencies: CurrencyType[],
     currentCurrency: {
       id: null | string,
       priceUsd: null | string
     },
-    currentCurrenciesOnPage: any[],
+    currentCurrenciesOnPage: CurrencyType[],
     loading: boolean,
     error: null | string
 }
@@ -24,7 +33,7 @@ interface FetchCurrenciesAction {
 
 interface FetchCurrentCurrenciesSuccessAction {
     type: CurrenciesActionTypes.FETCH_CURRENT_CURRENCIES_SUCCESS
-    payload: any[]
+    payload: CurrencyType[]
 }
 
 interface FetchCurrenciesFailedAction {
@@ -34,7 +43,7 @@ interface FetchCurrenciesFailedAction {
 
 interface InitializeCurrenciesAction {
     type: CurrenciesActionTypes.INITIALIZE_CURRENCIES,
-    payload: any[]
+    payload: CurrencyType[]
 }
 
 interface SetCurrentCurrencyAction {
@@ -47,7 +56,7 @@ interface SetCurrentCurrencyAction {
 
 interface AddToCurrenciesAction {
     type: CurrenciesActionTypes.ADD_TO_CURRENCIES,
-    payload: any[]
+    payload: CurrencyType[]
 }
 
 export type CurrencyAction = FetchCurrenciesAction | FetchCurrentCurrenciesSuccessAction | FetchCurrenciesFailedAction |

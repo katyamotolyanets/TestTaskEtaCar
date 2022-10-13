@@ -3,12 +3,12 @@ import {WalletAction, WalletActionTypes} from "../../types/wallet";
 
 const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
 
-interface WalletCurrencyParameters {
+type WalletCurrencyParameters = {
     id: string,
     count: number
 }
 
-export const addCurrencyToWallet = (id: string | null, priceUsd: string | null, count: number) => {
+export const addCurrencyToWallet = (id: string, priceUsd: string , count: number) => {
     return async (dispatch: Dispatch<WalletAction>) => {
         const currencyInfo = {
             id: id,

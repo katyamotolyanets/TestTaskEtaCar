@@ -13,7 +13,7 @@ const StyledCancelButton = styled.button`
   }
 `
 
-interface CancelButtonComponentProps {
+type CancelButtonComponentProps = {
     children: any,
     handleClick: () => void
 }

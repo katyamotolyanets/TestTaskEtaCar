@@ -16,8 +16,8 @@ const AddItemToWalletModal = () => {
     };
 
     const handleSubmitAddToWallet = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        addCurrencyToWallet(id, priceUsd, Number(countOfCurrency));
+        e.preventDefault();
+        if (id != null && priceUsd != null) addCurrencyToWallet(id, priceUsd, Number(countOfCurrency));
         fetchWalletCurrenciesData();
         setCurrentWalletPrice();
         setCurrentCurrency('', '')

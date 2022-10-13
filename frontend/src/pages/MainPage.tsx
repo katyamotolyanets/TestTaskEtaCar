@@ -6,13 +6,6 @@ import {useActions} from "../hooks/useActions";
 import Table from "../components/table/Table";
 import MainContainer from "../components/main/MainContainer";
 
-interface CurrencyType {
-    id: string,
-    name: string,
-    changePercent24Hr: string,
-    priceUsd: string
-};
-
 const ITEMS_PER_PAGE = 25;
 
 const MainPage: React.FC = () => {
@@ -42,7 +35,7 @@ const MainPage: React.FC = () => {
         <MainContainer>
             <Table firstParam='Name' secondParam='Changes' thirdParam='Price' fourthParam='Add to wallet'>
                 {
-                    currentCurrenciesOnPage?.map(({id, name, changePercent24Hr, priceUsd}: CurrencyType) => {
+                    currentCurrenciesOnPage?.map(({id, name, changePercent24Hr, priceUsd}) => {
                         return <TableElement id={id}
                                          name={name}
                                          changePercentDay={changePercent24Hr}

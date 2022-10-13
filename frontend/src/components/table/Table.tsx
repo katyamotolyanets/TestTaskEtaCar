@@ -38,7 +38,7 @@ export const StyledTr = styled.tr`
   }
 `
 
-interface TableComponentProps {
+type TableComponentProps = {
     children: any,
     firstParam: string,
     secondParam: string,

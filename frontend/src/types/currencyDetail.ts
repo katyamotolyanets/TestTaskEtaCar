@@ -9,7 +9,7 @@ export interface CurrencyDetailState {
         marketCapUsd: string | null,
         vwap24Hr: string | null
     },
-    history: any[]
+    history: void[]
 }
 
 export enum CurrencyDetailActionTypes {
@@ -33,7 +33,7 @@ interface FetchCurrencyAction {
 
 interface FetchCurrencyHistoryAction {
     type: CurrencyDetailActionTypes.FETCH_CURRENCY_HISTORY
-    payload: any[]
+    payload: void[]
 }
 
 export type CurrencyDetailAction = FetchCurrencyAction | FetchCurrencyHistoryAction

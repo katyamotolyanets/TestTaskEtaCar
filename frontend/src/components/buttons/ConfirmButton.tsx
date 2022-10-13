@@ -13,7 +13,7 @@ const StyledConfirmButton = styled.input`
   }
 `
 
-interface ConfirmButtonComponentProps {
+type ConfirmButtonComponentProps = {
     value: string,
     type: string
 }

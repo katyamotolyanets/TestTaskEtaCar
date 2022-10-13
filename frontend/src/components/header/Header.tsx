@@ -28,7 +28,7 @@ const StyledHeader = styled.header`
   }
 `
 
-interface HeaderComponentProps {
+type HeaderComponentProps = {
     children: any,
     topCurrencies: any
 }

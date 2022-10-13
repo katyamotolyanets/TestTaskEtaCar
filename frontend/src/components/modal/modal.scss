@@ -49,3 +49,9 @@
     max-width: 65%;
   }
 }
+
+@media screen and (max-width: 950px) {
+  .modal__content {
+    max-width: 70%;
+  }
+}

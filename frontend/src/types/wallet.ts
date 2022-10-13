@@ -1,21 +1,22 @@
-export interface WalletType {
+export type WalletType = {
     id: string,
     name: string,
     changePercent24Hr: string,
     priceUsd: string
 }
 
+export interface WalletCurrencyInfo {
+    [key: string]: string | number,
+    id: string,
+    price: string,
+    count: number
+}
+
 export interface WalletState {
-    currencies: any[],
+    currencies: WalletCurrencyInfo[],
     loading: boolean,
     visible: boolean,
     currentWalletPrice: number,
-}
-
-export interface WalletCurrencyInfo {
-    id: string,
-    price: string | null,
-    count: number
 }
 
 export enum WalletActionTypes {
@@ -30,11 +31,7 @@ export enum WalletActionTypes {
 
 interface AddCurrencyAction {
     type: WalletActionTypes.ADD_CURRENCY
-    payload: {
-        id: string | null,
-        price: string | null,
-        count: number,
-    }
+    payload: WalletCurrencyInfo
 }
 
 interface DeleteCurrencyAction {
@@ -56,7 +53,7 @@ interface SetModalInvisibleAction {
 
 interface InitializeWalletAction {
     type: WalletActionTypes.INITIALIZE_WALLET,
-    payload: any[]
+    payload: WalletCurrencyInfo[]
 }
 
 interface SetCurrentWalletPriceAction {

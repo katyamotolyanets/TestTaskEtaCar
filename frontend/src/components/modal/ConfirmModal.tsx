@@ -28,7 +28,7 @@ const StyledConfirmModal = styled.div`
   }
 `
 
-interface ConfirmModalComponentProps {
+type ConfirmModalComponentProps = {
     isConfirmModalShown: boolean,
     hideConfirmModal: () => void,
     handleSubmitDeleteCurrency: () => void

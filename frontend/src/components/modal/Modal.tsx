@@ -25,7 +25,7 @@ const StyledModal = styled.div`
   }
 `
 
-interface ModalComponentProps {
+type ModalComponentProps = {
     children: any,
     isActive: string | null | boolean,
     handleClickHideModal: () => void,

@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   }
 `
 
-interface ButtonComponentProps {
+type ButtonComponentProps = {
     children: string,
     onClick?: () => void
 }

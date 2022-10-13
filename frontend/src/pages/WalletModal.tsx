@@ -6,7 +6,7 @@ import Button from "../components/buttons/Button";
 import Modal from "../components/modal/Modal";
 import Table, {StyledTd, StyledTr} from "../components/table/Table";
 import ConfirmModal from "../components/modal/ConfirmModal";
-
+import {WalletCurrencyInfo} from "../types/wallet";
 
 const WalletModal:React.FC = () => {
     const [isConfirmModalShown, setConfirmModalShown] = useState(false);
@@ -21,9 +21,9 @@ const WalletModal:React.FC = () => {
 
     const uniqueCurrencies = currencies.reduce((previousValue, currentValue) => {
         previousValue[currentValue.id] = previousValue[currentValue.id] || 0;
-        previousValue[currentValue.id] += currentValue.count;
+        (previousValue[currentValue.id] as number) += currentValue.count
         return previousValue;
-    }, {});
+    }, {} as WalletCurrencyInfo);
 
     const handleClickHideModal = () => {
         setWalletModalInvisible();
@@ -34,7 +34,6 @@ const WalletModal:React.FC = () => {
         if (id != undefined) deleteCurrencyFromWallet(id);
         fetchWalletCurrenciesData();
         setCurrentWalletPrice();
-        fetchWalletCurrenciesData();
     };
 
     const showConfirmModal = (id: string) => {

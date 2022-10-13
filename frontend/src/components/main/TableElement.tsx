@@ -5,7 +5,7 @@ import {useActions} from "../../hooks/useActions";
 import Button from "../buttons/Button";
 import {StyledTd, StyledTr} from "../table/Table";
 
-export interface ElementComponentProps {
+export type ElementComponentProps = {
     id: string
     name: string,
     changePercentDay: string,

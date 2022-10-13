@@ -30,7 +30,7 @@ const StyledDetailPage = styled.div`
   }
 `
 
-interface DetailPageContainerComponentProps {
+type DetailPageContainerComponentProps = {
     children: any,
     name: string | null,
     symbol: string | null

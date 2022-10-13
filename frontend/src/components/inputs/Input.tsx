@@ -8,7 +8,7 @@ const StyledInput = styled.input`
   border-bottom: 0.01em solid black;
 `
 
-interface InputComponentProps {
+type InputComponentProps = {
     value: string | undefined,
     handleChange: (event: React.FormEvent<HTMLInputElement>) => void
 }
