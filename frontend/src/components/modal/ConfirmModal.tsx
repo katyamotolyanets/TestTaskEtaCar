@@ -1,32 +1,7 @@
 import React from 'react';
-import styled from "styled-components";
 import ConfirmButton from "../buttons/ConfirmButton";
 import CancelButton from "../buttons/CancelButton";
-
-const StyledConfirmModal = styled.div`
-  position: fixed;
-  top: 30vh;
-  left: 35vw;
-  border-radius: 1em;
-  background-color: #fff;
-  max-height: 50%;
-  max-width: 30%;
-  form {
-    display: flex;
-    flex-direction: column;
-    h2 {
-      margin: 0 3%;
-      padding-top: 3%;
-    }
-    .form-button-group {
-      display: flex;
-      justify-content: center;
-      button, input {
-        margin: 0 5%;
-      }
-    }
-  }
-`
+import { StyledConfirmModal } from './style';
 
 type ConfirmModalComponentProps = {
     isConfirmModalShown: boolean,

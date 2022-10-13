@@ -4,9 +4,10 @@ import {useActions} from "../hooks/useActions";
 import {formatStringToNumber} from "../services/service";
 import Button from "../components/buttons/Button";
 import Modal from "../components/modal/Modal";
-import Table, {StyledTd, StyledTr} from "../components/table/Table";
+import Table from "../components/table/Table";
 import ConfirmModal from "../components/modal/ConfirmModal";
 import {WalletCurrencyInfo} from "../types/wallet";
+import {StyledTd, StyledTr } from '../components/table/style';
 
 const WalletModal:React.FC = () => {
     const [isConfirmModalShown, setConfirmModalShown] = useState(false);

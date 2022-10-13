@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {formatStringToNumber} from "../../services/service";
 import {useActions} from "../../hooks/useActions";
 import Button from "../buttons/Button";
-import {StyledTd, StyledTr} from "../table/Table";
+import {StyledTd, StyledTr } from '../table/style';
 
 export type ElementComponentProps = {
     id: string

@@ -1,17 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
-
-const StyledCancelButton = styled.button`
-  background-color: #4dffa6;
-  padding: 7% 15%;
-  border: 0.01em solid #4dffa6;
-  border-radius: 1em;
-  cursor: pointer;
-  color: #fff;
-  &:focus-within {
-    outline: 1px solid #99a5ff;
-  }
-`
+import { StyledCancelButton } from './style';
 
 type CancelButtonComponentProps = {
     children: any,
