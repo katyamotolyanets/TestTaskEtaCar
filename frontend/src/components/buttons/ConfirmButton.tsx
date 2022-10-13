@@ -8,6 +8,9 @@ const StyledConfirmButton = styled.input`
   border-radius: 1em;
   cursor: pointer;
   color: #fff;
+  &:focus-within {
+    outline: 1px solid #99a5ff;
+  }
 `
 
 interface ConfirmButtonComponentProps {

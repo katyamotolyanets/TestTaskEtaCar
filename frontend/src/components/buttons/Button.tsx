@@ -7,6 +7,9 @@ const StyledButton = styled.button`
   border: 0.01em solid black;
   border-radius: 1em;
   cursor: pointer;
+  &:focus-within {
+    outline: 1px solid #99a5ff;
+  }
 `
 
 interface ButtonComponentProps {

@@ -23,6 +23,9 @@ const StyledDetailPage = styled.div`
     }
     button {
       margin-top: 1em;
+      &:focus-within {
+        outline: 1px solid #99a5ff;
+      }
     }
   }
 `
