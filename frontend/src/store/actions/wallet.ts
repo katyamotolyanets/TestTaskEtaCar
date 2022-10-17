@@ -1,13 +1,13 @@
 import {Dispatch} from "redux";
 import {WalletAction, WalletActionTypes, WalletCurrencyInfo} from "../../types/wallet";
 
-const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
-
 type WalletCurrencyParameters = {
     id: string,
     count: number,
     priceUsd: string
 }
+
+const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
 
 export const addCurrencyToWallet = (id: string, priceUsd: string , count: number) => {
     return async (dispatch: Dispatch<WalletAction>) => {

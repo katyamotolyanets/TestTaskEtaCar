@@ -7,7 +7,7 @@ const initialState: WalletState = {
     currentWalletPrice: 0,
 };
 
-const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
+const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
 
 export const walletReducer = (state = initialState, action: WalletAction): WalletState => {
     switch (action.type) {

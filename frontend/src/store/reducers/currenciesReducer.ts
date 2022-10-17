@@ -1,4 +1,4 @@
-import {CurrenciesActionTypes, CurrencyAction, CurrencyState} from "../../types/currency";
+import {CurrenciesActionTypes, CurrencyAction, CurrencyState, CurrencyType} from "../../types/currency";
 
 const initialState: CurrencyState = {
     currencies: [],
@@ -47,7 +47,7 @@ export const currenciesReducer = (state = initialState, action: CurrencyAction):
                 currentCurrency: action.payload
             }
         case CurrenciesActionTypes.ADD_TO_CURRENCIES:
-            let currentCurrencies = JSON.parse(localStorage.getItem('currencies') as string) || []
+            let currentCurrencies: CurrencyType[] = JSON.parse(localStorage.getItem('currencies') as string) || []
             localStorage.setItem('currencies', JSON.stringify([...currentCurrencies, ...action.payload]))
             return {
                 ...state,
