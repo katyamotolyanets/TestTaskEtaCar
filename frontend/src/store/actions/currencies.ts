@@ -1,10 +1,10 @@
 import axios from "axios";
 import {Dispatch} from "redux";
-import {CurrenciesActionTypes, CurrencyAction} from "../../types/currency";
+import {CurrenciesActionTypes, CurrencyAction, CurrencyType} from "../../types/currency";
 
 export const addToCurrencies = (id: string) => {
     return async (dispatch: Dispatch<CurrencyAction>) => {
-        let result: any[] = [];
+        let result: CurrencyType[] = [];
         let promises = [];
         promises.push(
             axios.get(`/assets/${id}`).then(response => {
@@ -20,11 +20,11 @@ export const fetchWalletCurrenciesData = () => {
     return async (dispatch: Dispatch<CurrencyAction>) => {
         try {
             const wallet = JSON.parse(localStorage.getItem('wallet') as string) || [];
-            let result: any[] = [];
+            let result: CurrencyType[] = [];
             let promises = [];
             promises.push(axios.get(`/assets?limit=3`)
                 .then(({data}) => {
-                    data?.data?.forEach((item: {}) => result.push(item))
+                    data?.data?.forEach((item: CurrencyType) => result.push(item))
                 }))
             for (let element of wallet) {
                 promises.push(
