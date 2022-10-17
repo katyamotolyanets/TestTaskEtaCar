@@ -1,4 +1,4 @@
-type CurrencyType = {
+export type CurrencyType = {
     id: string,
     name: string,
     changePercent24Hr: string,
