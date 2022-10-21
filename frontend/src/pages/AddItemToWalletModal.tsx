@@ -1,12 +1,17 @@
 import React, {FormEvent, useState} from 'react';
 import {useActions} from "../hooks/useActions";
 import {useTypedSelector} from "../hooks/useTypedSelector";
+import {trpc} from "../trpc";
 import Modal from "../components/modal/Modal";
 import Input from "../components/inputs/Input";
 import Button from "../components/buttons/Button";
+import {WalletCurrencyInfo} from "../types/wallet";
 
 const AddItemToWalletModal = () => {
     const {setCurrentCurrency, addCurrencyToWallet, setCurrentWalletPrice, fetchWalletCurrenciesData} = useActions();
+    const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+    const {data: topThreeCurrencies} = trpc.useQuery(['getLimitCurrenciesWithOffset', {limit: 3, offset: 0}]);
+    const {data: currencies} = trpc.useQuery(['fetchCurrenciesFromArray', wallet]);
     const [countOfCurrency, setCountOfCurrency] = useState<string | undefined>(undefined);
     const {currentCurrency} = useTypedSelector(state => state.currencies);
     const {id, priceUsd} = currentCurrency;
@@ -17,15 +22,15 @@ const AddItemToWalletModal = () => {
 
     const handleSubmitAddToWallet = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (id != null && priceUsd != null) addCurrencyToWallet(id, priceUsd, Number(countOfCurrency));
-        fetchWalletCurrenciesData();
+        addCurrencyToWallet(id!, priceUsd!, Number(countOfCurrency));
+        fetchWalletCurrenciesData(topThreeCurrencies, currencies!);
         setCurrentWalletPrice();
-        setCurrentCurrency('', '')
-        setCountOfCurrency(undefined)
+        setCurrentCurrency('', '');
+        setCountOfCurrency(undefined);
     };
 
     const handleClickHideModal = () => {
-        setCurrentCurrency('', '')
+        setCurrentCurrency('', '');
     }
 
     return (

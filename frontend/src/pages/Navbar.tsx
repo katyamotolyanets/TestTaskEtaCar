@@ -4,28 +4,21 @@ import {formatStringToNumber} from "../services/service";
 import {useActions} from "../hooks/useActions";
 import Header from "../components/header/Header";
 import WalletButton from "../components/buttons/WalletButton";
+import {WalletCurrencyInfo} from "../types/wallet";
+import {trpc} from "../trpc";
+import {CurrencyType} from "../types/currency";
 
 const Navbar: React.FC = () => {
     const {setWalletModalVisible, setCurrentWalletPrice, fetchWalletCurrenciesData} = useActions();
-    const {currencies} = useTypedSelector(state => state.currencies);
-    const {currentWalletPrice} = useTypedSelector(state => state.wallet);
     const initialWalletPrice = JSON.parse(localStorage.getItem('initialWalletPrice') as string);
-
-    const uniqueIds: string[] = [];
-    const topCurrencies = currencies
-        .filter(element => {
-            const isDuplicate = uniqueIds.includes(element.id);
-            if (!isDuplicate) {
-                uniqueIds.push(element.id);
-                return true;
-            }
-            return false;
-        })
-        .sort((previous, current) => Number(previous.rank) - Number(current.rank))
-        .slice(0, 3);
+    const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+    const {currentWalletPrice} = useTypedSelector(state => state.wallet);
+    const topThreeCurrencies: CurrencyType[] = trpc
+        .useQuery(['getLimitCurrenciesWithOffset', {limit: 3, offset: 0}]).data;
+    const {data: currentCurrencies} = trpc.useQuery(['fetchCurrenciesFromArray', wallet]);
 
     useEffect(() => {
-        fetchWalletCurrenciesData() ;
+        fetchWalletCurrenciesData(topThreeCurrencies, currentCurrencies!) ;
         setCurrentWalletPrice();
     }, [])
 
@@ -33,11 +26,11 @@ const Navbar: React.FC = () => {
     let differenceInPercent = formatStringToNumber(((difference / currentWalletPrice) * 100).toString())
 
     const handleClickShowModal = () => {
-        setWalletModalVisible()
+        setWalletModalVisible();
     }
 
     return (
-        <Header topCurrencies={topCurrencies.map(({id, symbol, priceUsd}) => (
+        <Header topCurrencies={topThreeCurrencies?.map(({id, symbol, priceUsd}) => (
                 <p key={id}>{symbol} = {formatStringToNumber(priceUsd)} USD</p>))}>
             <div>Wallet price = {formatStringToNumber(currentWalletPrice.toString() || '0')} USD</div>
             <div>{difference > 0 ? '+' : ''}{formatStringToNumber(difference.toString() || '0')} USD

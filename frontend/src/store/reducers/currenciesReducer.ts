@@ -48,10 +48,10 @@ export const currenciesReducer = (state = initialState, action: CurrencyAction):
             }
         case CurrenciesActionTypes.ADD_TO_CURRENCIES:
             let currentCurrencies: CurrencyType[] = JSON.parse(localStorage.getItem('currencies') as string) || []
-            localStorage.setItem('currencies', JSON.stringify([...currentCurrencies, ...action.payload]))
+            localStorage.setItem('currencies', JSON.stringify([...currentCurrencies, action.payload]))
             return {
                 ...state,
-                currencies: [...state.currencies, ...action.payload]
+                currencies: [...state.currencies, action.payload]
             }
         default:
             return state

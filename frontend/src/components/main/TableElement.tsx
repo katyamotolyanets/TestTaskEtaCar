@@ -15,9 +15,9 @@ export type ElementComponentProps = {
 const TableElement = ({id, name, changePercentDay, priceUsd}: ElementComponentProps) => {
     const {setCurrentCurrency, addToCurrencies} = useActions();
 
-    const handleClickBuyCurrency = () => {
+    const handleClickBuyCurrency = async () => {
         setCurrentCurrency(id, priceUsd)
-        addToCurrencies(id);
+        addToCurrencies(id, name, changePercentDay, priceUsd);
     };
 
     return (

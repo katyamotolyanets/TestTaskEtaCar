@@ -8,15 +8,19 @@ import Table from "../components/table/Table";
 import ConfirmModal from "../components/modal/ConfirmModal";
 import {WalletCurrencyInfo} from "../types/wallet";
 import {StyledTd, StyledTr } from '../components/table/style';
+import {trpc} from "../trpc";
 
 const WalletModal:React.FC = () => {
+    const {setWalletModalInvisible, deleteCurrencyFromWallet, setCurrentWalletPrice, fetchWalletCurrenciesData} = useActions();
     const [isConfirmModalShown, setConfirmModalShown] = useState(false);
     const [itemToDelete, setItemToDelete] = useState<string | undefined>(undefined);
     const {visible, currencies, currentWalletPrice} = useTypedSelector(state => state.wallet);
-    const {setWalletModalInvisible, deleteCurrencyFromWallet, setCurrentWalletPrice, fetchWalletCurrenciesData} = useActions();
+    const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+    const {data: topThreeCurrencies} = trpc.useQuery(['getLimitCurrenciesWithOffset', {limit: 3, offset: 0}]);
+    const {data: currentCurrencies} = trpc.useQuery(['fetchCurrenciesFromArray', wallet]);
 
     useEffect(() => {
-        fetchWalletCurrenciesData();
+        fetchWalletCurrenciesData(topThreeCurrencies, currentCurrencies!);
         setCurrentWalletPrice();
     }, [])
 
@@ -32,8 +36,8 @@ const WalletModal:React.FC = () => {
     };
 
     const handleClickDeleteCurrency = (id: string | undefined) => {
-        if (id != undefined) deleteCurrencyFromWallet(id);
-        fetchWalletCurrenciesData();
+        deleteCurrencyFromWallet(id!);
+        fetchWalletCurrenciesData(topThreeCurrencies, currentCurrencies!);
         setCurrentWalletPrice();
     };
 

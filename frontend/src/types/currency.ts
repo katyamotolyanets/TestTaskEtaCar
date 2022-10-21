@@ -3,8 +3,8 @@ export type CurrencyType = {
     name: string,
     changePercent24Hr: string,
     priceUsd: string,
-    symbol: string,
-    rank: string
+    symbol?: string,
+    rank?: string
 };
 
 export interface CurrencyState {
@@ -56,7 +56,7 @@ interface SetCurrentCurrencyAction {
 
 interface AddToCurrenciesAction {
     type: CurrenciesActionTypes.ADD_TO_CURRENCIES,
-    payload: CurrencyType[]
+    payload: CurrencyType
 }
 
 export type CurrencyAction = FetchCurrenciesAction | FetchCurrentCurrenciesSuccessAction | FetchCurrenciesFailedAction |

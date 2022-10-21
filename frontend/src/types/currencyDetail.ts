@@ -1,14 +1,16 @@
+export type CurrencyDetailType = {
+    rank?: string | null,
+    name: string | null,
+    symbol: string | null,
+    priceUsd: string | null,
+    supply: string | null,
+    maxSupply: string | null,
+    marketCapUsd: string | null,
+    vwap24Hr: string | null
+}
+
 export interface CurrencyDetailState {
-    currency: {
-        rank: string | null,
-        name: string | null,
-        symbol: string | null,
-        priceUsd: string | null,
-        supply: string | null,
-        maxSupply: string | null,
-        marketCapUsd: string | null,
-        vwap24Hr: string | null
-    },
+    currency: CurrencyDetailType,
     history: void[]
 }
 
@@ -19,16 +21,7 @@ export enum CurrencyDetailActionTypes {
 
 interface FetchCurrencyAction {
     type: CurrencyDetailActionTypes.FETCH_CURRENCY
-    payload: {
-        rank: string | null,
-        name: string | null,
-        symbol: string | null,
-        priceUsd: string | null,
-        supply: string | null,
-        maxSupply: string | null,
-        marketCapUsd: string | null,
-        vwap24Hr: string | null
-    }
+    payload: CurrencyDetailType
 }
 
 interface FetchCurrencyHistoryAction {

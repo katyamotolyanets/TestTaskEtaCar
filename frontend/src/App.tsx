@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import axios from "axios";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 import './App.scss';
+import {trpc} from "./trpc";
 import {useActions} from "./hooks/useActions";
 import {GlobalStyle} from "./styles/global";
 import MainPage from "./pages/MainPage";
@@ -10,15 +11,25 @@ import DetailPage from "./pages/DetailPage";
 import WalletModal from "./pages/WalletModal";
 import Navbar from "./pages/Navbar";
 import AddItemToWalletModal from "./pages/AddItemToWalletModal";
+import {WalletCurrencyInfo} from "./types/wallet";
 
-axios.defaults.baseURL = 'https://api.coincap.io/v2';
+const client = new QueryClient();
 
-const App: React.FC = () => {
-    const {fetchWalletCurrenciesData, initializeWallet, calculateInitialWalletPrice, setCurrentWalletPrice} = useActions();
+const AppContent: React.FC = () => {
+    const {
+        fetchWalletCurrenciesData,
+        initializeWallet,
+        calculateInitialWalletPrice,
+        setCurrentWalletPrice,
+    } = useActions();
+
+    const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+    const {data: topThreeCurrencies} = trpc.useQuery(['getLimitCurrenciesWithOffset', {limit: 3, offset: 0}]);
+    const {data: currencies} = trpc.useQuery(['fetchCurrenciesFromArray', wallet]);
 
     useEffect(() => {
         initializeWallet();
-        fetchWalletCurrenciesData();
+        fetchWalletCurrenciesData(topThreeCurrencies, currencies!);
         setCurrentWalletPrice();
         calculateInitialWalletPrice();
     }, [])
@@ -38,6 +49,21 @@ const App: React.FC = () => {
             <AddItemToWalletModal/>
         </div>
   );
+}
+
+const App = () => {
+    const [trpcClient] = useState(() =>
+        trpc.createClient({
+            url: 'http://localhost:8080/trpc'
+        })
+    )
+    return (
+        <trpc.Provider client={trpcClient} queryClient={client}>
+            <QueryClientProvider client={client}>
+                <AppContent/>
+            </QueryClientProvider>
+        </trpc.Provider>
+    )
 }
 
 export default App;

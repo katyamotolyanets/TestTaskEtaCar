@@ -1,22 +1,22 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router";
 import {useActions} from "../hooks/useActions";
-import {useTypedSelector} from "../hooks/useTypedSelector";
+import {trpc} from "../trpc";
 import {formatStringToNumber} from "../services/service";
 import DetailPageContainer from "../components/detail-page/DetailPageContainer";
 import WalletButton from "../components/buttons/WalletButton";
 import LineChartContainer from "../components/linechart/LineChartContainer";
 
 const DetailPage: React.FC = () => {
-    const {id} = useParams()
-    const {fetchCurrencyData, fetchCurrencyHistory, setCurrentCurrency} = useActions()
+    const {id} = useParams();
+    const {fetchCurrencyData, fetchCurrencyHistory, setCurrentCurrency} = useActions();
+    const {data: currency, isLoading: currencyLoading} = trpc.useQuery(['getCurrencyById', id!]);
+    const {data: history, isLoading: historyLoading} = trpc.useQuery(['fetchCurrencyHistory', id!]);
 
     useEffect(() => {
-        fetchCurrencyData(id)
-        fetchCurrencyHistory(id)
-    }, [id])
-
-    const {currency, history} = useTypedSelector(state => state.currency)
+        fetchCurrencyData(currency)
+        fetchCurrencyHistory(history)
+    }, [currencyLoading, historyLoading])
 
     const {
         rank,
@@ -27,7 +27,7 @@ const DetailPage: React.FC = () => {
         maxSupply,
         marketCapUsd,
         vwap24Hr
-    } = currency
+    } = currency || {}
 
     const navigate = useNavigate();
     const handleClickBackToMainPage = () => {
@@ -35,8 +35,7 @@ const DetailPage: React.FC = () => {
     };
 
     const handleClickBuyCurrency = () => {
-        if (id != null && priceUsd != null)
-            setCurrentCurrency(id, priceUsd)
+        setCurrentCurrency(id!, priceUsd!);
     };
 
     return (
