@@ -26,7 +26,7 @@ const TableElement = ({id, name, changePercentDay, priceUsd}: ElementComponentPr
             <StyledTd><Link to={{pathname:`/currency/${id}`}}>{formatStringToNumber(changePercentDay)}</Link></StyledTd>
             <StyledTd><Link to={{pathname:`/currency/${id}`}}>{formatStringToNumber(priceUsd)}</Link></StyledTd>
             <StyledTd>
-                <Button onClick={handleClickBuyCurrency}>Buy</Button>
+                <Button onClick={handleClickBuyCurrency} border={true}>Buy</Button>
             </StyledTd>
         </StyledTr>
     );

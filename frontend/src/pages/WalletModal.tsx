@@ -65,7 +65,7 @@ const WalletModal:React.FC = () => {
                                             <StyledTd>{entry[0]}</StyledTd>
                                             <StyledTd className='count-of-currencies'>{entry[1] as string}</StyledTd>
                                             <StyledTd>
-                                                <Button onClick={() => showConfirmModal(entry[0])}>
+                                                <Button onClick={() => showConfirmModal(entry[0])} border={true}>
                                                     Delete
                                                 </Button>
                                             </StyledTd>

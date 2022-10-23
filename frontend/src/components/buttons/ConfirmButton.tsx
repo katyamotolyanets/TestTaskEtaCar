@@ -1,14 +1,13 @@
 import React from 'react';
-import { StyledConfirmButton } from './style';
+import Button from "./Button";
 
 type ConfirmButtonComponentProps = {
-    value: string,
-    type: string
+    children: string,
 }
 
-const ConfirmButton: React.FC<ConfirmButtonComponentProps> = ({value, type}) => {
+const ConfirmButton: React.FC<ConfirmButtonComponentProps> = ({children}) => {
     return (
-        <StyledConfirmButton type={type} value={value}/>
+        <Button type='submit' backgroundColor='#4dffa6' border={false} color='#fff'>{children}</Button>
     );
 };
 

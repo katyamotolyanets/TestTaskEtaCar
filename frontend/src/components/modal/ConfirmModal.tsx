@@ -1,7 +1,7 @@
 import React from 'react';
 import ConfirmButton from "../buttons/ConfirmButton";
-import CancelButton from "../buttons/CancelButton";
 import { StyledConfirmModal } from './style';
+import CancelButton from "../buttons/CancelButton";
 
 type ConfirmModalComponentProps = {
     isConfirmModalShown: boolean,
@@ -21,8 +21,8 @@ const ConfirmModal: React.FC<ConfirmModalComponentProps> = ({isConfirmModalShown
                 <form onSubmit={handleSubmitCurrencyDeletion}>
                     <h2>Are you sure you want to delete this item?</h2>
                     <div className='form-button-group'>
-                        <CancelButton handleClick={hideConfirmModal}>Cancel</CancelButton>
-                        <ConfirmButton type='submit' value='Yes'/>
+                        <CancelButton onClick={hideConfirmModal}>Cancel</CancelButton>
+                        <ConfirmButton>Yes</ConfirmButton>
                     </div>
                 </form>
             </StyledConfirmModal>

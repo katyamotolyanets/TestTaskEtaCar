@@ -1,9 +1,23 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
-  background-color: transparent;
-  padding: 3% 7%;
-  border: 0.01em solid black;
+interface ButtonProps {
+    type: string,
+    background: string,
+    border: boolean,
+    color: string
+}
+
+export const StyledButton = styled.button.attrs((props: ButtonProps) => ({
+    type: props.type,
+}))<ButtonProps>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.background || 'transparent'};
+  line-height: 2;
+  padding: 0 1rem;
+  color: ${props => props.color || 'black'};
+  border: ${props => props.border ? '0.01em solid black' : 'none'}; 
   border-radius: 1em;
   cursor: pointer;
   &:focus-within {
@@ -11,29 +25,6 @@ export const StyledButton = styled.button`
   }
 `
 
-export const StyledCancelButton = styled.button`
-  background-color: #4dffa6;
-  padding: 7% 15%;
-  border: 0.01em solid #4dffa6;
-  border-radius: 1em;
-  cursor: pointer;
-  color: #fff;
-  &:focus-within {
-    outline: 1px solid #99a5ff;
-  }
-`
-
-export const StyledConfirmButton = styled.input`
-  background-color: #ff4d4d;
-  padding: 7% 15%;
-  border: 0.01em solid #ff4d4d;
-  border-radius: 1em;
-  cursor: pointer;
-  color: #fff;
-  &:focus-within {
-    outline: 1px solid #99a5ff;
-  }
-`
 export const StyledWalletButton = styled.button`
   padding: 1% 2%;
   background-color: #e6e8ff;

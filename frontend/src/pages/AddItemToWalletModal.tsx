@@ -38,7 +38,7 @@ const AddItemToWalletModal = () => {
             <h2>{currentCurrency.id}</h2>
             <form onSubmit={handleSubmitAddToWallet}>
                 <Input value={countOfCurrency} handleChange={handleChangeCountOfCurrency}/>
-                <Button>Add to wallet</Button>
+                <Button border={true}>Add to wallet</Button>
             </form>
         </Modal>
 
