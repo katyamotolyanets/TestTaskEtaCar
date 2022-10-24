@@ -1,11 +1,19 @@
 import styled from "styled-components";
 
-export const StyledConfirmModal = styled.div`
+interface ConfirmModalProps {
+    background: string,
+    borderColor: string,
+    borderThickness: string,
+}
+
+export const StyledConfirmModal = styled.div<ConfirmModalProps>`
   position: fixed;
+  padding: 1%;
   top: 30vh;
   left: 35vw;
   border-radius: 1em;
-  background-color: #fff;
+  background-color: ${props => props.background || '#fff'};
+  border: ${props => props.borderThickness ? `${props.borderThickness} solid ${props.borderColor}` : 'none'};
   max-height: 50%;
   max-width: 30%;
   form {
@@ -13,7 +21,8 @@ export const StyledConfirmModal = styled.div`
     flex-direction: column;
     h2 {
       margin: 0 3%;
-      padding-top: 3%;
+      padding: 3% 0;
+      text-align: center;
     }
     .form-button-group {
       display: flex;

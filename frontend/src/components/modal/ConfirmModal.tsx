@@ -4,20 +4,28 @@ import { StyledConfirmModal } from './style';
 import CancelButton from "../buttons/CancelButton";
 
 type ConfirmModalComponentProps = {
+    backgroundColor?: string,
+    borderColor?: string,
+    borderThickness?: string,
     isConfirmModalShown: boolean,
-    hideConfirmModal: () => void,
-    handleSubmitDeleteCurrency: () => void
+    hideConfirmModal?: () => void,
+    handleSubmitDeleteCurrency?: () => void
 }
 
-const ConfirmModal: React.FC<ConfirmModalComponentProps> = ({isConfirmModalShown, hideConfirmModal, handleSubmitDeleteCurrency}) => {
+const ConfirmModal: React.FC<ConfirmModalComponentProps> = ({isConfirmModalShown,
+                                                                hideConfirmModal,
+                                                                handleSubmitDeleteCurrency,
+                                                                backgroundColor,
+                                                                borderColor,
+                                                                borderThickness}) => {
     const handleSubmitCurrencyDeletion = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        hideConfirmModal();
-        handleSubmitDeleteCurrency();
+        hideConfirmModal!();
+        handleSubmitDeleteCurrency!();
     }
     return (
         isConfirmModalShown ?
-            <StyledConfirmModal>
+            <StyledConfirmModal background={backgroundColor!} borderColor={borderColor!} borderThickness={borderThickness!}>
                 <form onSubmit={handleSubmitCurrencyDeletion}>
                     <h2>Are you sure you want to delete this item?</h2>
                     <div className='form-button-group'>

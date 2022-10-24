@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledTable, StyledTd, StyledTr } from './style';
 
 type TableComponentProps = {
-    children: JSX.Element|JSX.Element[],
+    children: JSX.Element | JSX.Element[],
     firstParam: string,
     secondParam: string,
     thirdParam: string,
