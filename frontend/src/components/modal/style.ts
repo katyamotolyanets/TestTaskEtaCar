@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-interface ConfirmModalProps {
+type ConfirmModalProps = {
     background: string,
     borderColor: string,
     borderThickness: string,

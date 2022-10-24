@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-interface ButtonProps {
+type ButtonProps = {
     type: string,
     background: string,
     border: boolean,
