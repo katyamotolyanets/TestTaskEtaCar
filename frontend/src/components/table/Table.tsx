@@ -3,6 +3,7 @@ import { StyledTable, StyledTd, StyledTr } from './style';
 
 type TableComponentProps = {
     children: JSX.Element | JSX.Element[],
+    backgroundColor?: string,
     firstParam: string,
     secondParam: string,
     thirdParam: string,
@@ -10,6 +11,7 @@ type TableComponentProps = {
 };
 
 const Table: React.FC<TableComponentProps> = ({children,
+                                              backgroundColor,
                                               firstParam,
                                               secondParam,
                                               thirdParam,
@@ -17,7 +19,7 @@ const Table: React.FC<TableComponentProps> = ({children,
     return (
         <StyledTable>
             <tbody>
-                <StyledTr>
+                <StyledTr background={backgroundColor!}>
                     <StyledTd>{firstParam}</StyledTd>
                     <StyledTd>{secondParam}</StyledTd>
                     <StyledTd>{thirdParam}</StyledTd>

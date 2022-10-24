@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type TableRowProps = {
+    background?: string
+}
+
 export const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -22,17 +26,18 @@ export const StyledTd = styled.td`
   }
 `
 
-export const StyledTr = styled.tr`
+export const StyledTr = styled.tr<TableRowProps>`
   width: max-content;
+  white-space: normal;
   margin: .5em;
   &:first-child {
     td {
-      background-color: #f2f3ff;
+      background-color: ${({background}) => background ? background : '#f2f3ff'};
       border: none;
     }
   }
   &:hover,
   &:focus-within {
-    background: #f2f3ff;
+    background-color: ${({background}) => background ? background : '#f2f3ff'};
   }
 `
