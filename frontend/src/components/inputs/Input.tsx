@@ -3,12 +3,13 @@ import { StyledInput } from './style';
 
 type InputComponentProps = {
     value: string | undefined,
-    handleChange: (event: React.FormEvent<HTMLInputElement>) => void
+    type?: string,
+    handleChange?: (event: React.FormEvent<HTMLInputElement>) => void
 }
 
-const Input: React.FC<InputComponentProps> = ({value, handleChange}) => {
+const Input: React.FC<InputComponentProps> = ({value, type, handleChange}) => {
     return (
-        <StyledInput type="number"
+        <StyledInput type={type}
                value={value ? value : ''}
                onChange={handleChange}
                max="999999999999999"/>
