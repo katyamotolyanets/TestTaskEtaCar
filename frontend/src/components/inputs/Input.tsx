@@ -12,7 +12,8 @@ const Input: React.FC<InputComponentProps> = ({value, type, handleChange}) => {
         <StyledInput type={type}
                value={value ? value : ''}
                onChange={handleChange}
-               max="999999999999999"/>
+               max="999999999999999"
+               min="0.01"/>
     );
 };
 

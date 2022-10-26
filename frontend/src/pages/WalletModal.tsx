@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
-import {formatStringToNumber} from "../services/service";
+import {formatStringToNumber} from "../utils/utilities";
 import Button from "../components/buttons/Button";
 import Modal from "../components/modal/Modal";
 import Table from "../components/table/Table";

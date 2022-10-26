@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router";
 import {useActions} from "../hooks/useActions";
 import {trpc} from "../trpc";
-import {formatStringToNumber} from "../services/service";
+import {formatStringToNumber} from "../utils/utilities";
 import DetailPageContainer from "../components/detail-page/DetailPageContainer";
 import WalletButton from "../components/buttons/WalletButton";
 import LineChartContainer from "../components/linechart/LineChartContainer";

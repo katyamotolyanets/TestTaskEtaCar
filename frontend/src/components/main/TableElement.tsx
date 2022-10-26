@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {formatStringToNumber} from "../../services/service";
+import {formatStringToNumber} from "../../utils/utilities";
 import {useActions} from "../../hooks/useActions";
 import Button from "../buttons/Button";
 import {StyledTd, StyledTr } from '../table/style';

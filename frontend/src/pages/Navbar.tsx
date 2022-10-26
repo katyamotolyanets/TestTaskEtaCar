@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
-import {formatStringToNumber} from "../services/service";
+import {formatStringToNumber} from "../utils/utilities";
 import {useActions} from "../hooks/useActions";
 import Header from "../components/header/Header";
 import WalletButton from "../components/buttons/WalletButton";
