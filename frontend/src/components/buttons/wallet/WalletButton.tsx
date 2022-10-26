@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledWalletButton } from './style';
+import { StyledWalletButton } from '../style';
 
 const WalletButton: React.FC<any> = ({children, handleClick}) => {
     return (

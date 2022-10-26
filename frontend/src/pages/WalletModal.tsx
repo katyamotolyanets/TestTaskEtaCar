@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 import {formatStringToNumber} from "../utils/utilities";
-import Button from "../components/buttons/Button";
+import Button from "../components/buttons/default/Button";
 import Modal from "../components/modal/Modal";
 import Table from "../components/table/Table";
 import ConfirmModal from "../components/modal/ConfirmModal";

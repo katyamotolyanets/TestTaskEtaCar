@@ -1,7 +1,7 @@
 import React from 'react';
-import ConfirmButton from "../buttons/ConfirmButton";
+import ConfirmButton from "../buttons/confirm/ConfirmButton";
 import { StyledConfirmModal } from './style';
-import CancelButton from "../buttons/CancelButton";
+import CancelButton from "../buttons/cancel/CancelButton";
 
 type ConfirmModalComponentProps = {
     backgroundColor?: string,

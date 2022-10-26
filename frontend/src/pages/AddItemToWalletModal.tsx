@@ -4,7 +4,7 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {trpc} from "../trpc";
 import Modal from "../components/modal/Modal";
 import Input from "../components/inputs/Input";
-import Button from "../components/buttons/Button";
+import Button from "../components/buttons/default/Button";
 import {WalletCurrencyInfo} from "../types/wallet";
 
 const AddItemToWalletModal = () => {

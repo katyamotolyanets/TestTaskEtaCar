@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {formatStringToNumber} from "../../utils/utilities";
 import {useActions} from "../../hooks/useActions";
-import Button from "../buttons/Button";
+import Button from "../buttons/default/Button";
 import {StyledTd, StyledTr } from '../table/style';
 
 export type ElementComponentProps = {

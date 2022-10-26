@@ -4,7 +4,7 @@ import {useActions} from "../hooks/useActions";
 import {trpc} from "../trpc";
 import {formatStringToNumber} from "../utils/utilities";
 import DetailPageContainer from "../components/detail-page/DetailPageContainer";
-import WalletButton from "../components/buttons/WalletButton";
+import WalletButton from "../components/buttons/wallet/WalletButton";
 import LineChartContainer from "../components/linechart/LineChartContainer";
 
 const DetailPage: React.FC = () => {

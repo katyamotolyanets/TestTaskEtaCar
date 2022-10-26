@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "./Button";
+import Button from "../default/Button";
 
 export type CancelButtonComponentProps = {
     children: string,

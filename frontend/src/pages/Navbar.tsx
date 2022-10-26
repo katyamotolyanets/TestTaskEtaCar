@@ -3,7 +3,7 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {formatStringToNumber} from "../utils/utilities";
 import {useActions} from "../hooks/useActions";
 import Header from "../components/header/Header";
-import WalletButton from "../components/buttons/WalletButton";
+import WalletButton from "../components/buttons/wallet/WalletButton";
 import {WalletCurrencyInfo} from "../types/wallet";
 import {trpc} from "../trpc";
 import {CurrencyType} from "../types/currency";
