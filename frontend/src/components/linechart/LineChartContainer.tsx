@@ -1,6 +1,6 @@
 import React from 'react';
 import {CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis} from "recharts";
-import {formatStringToDate} from "../../utils/utilities";
+import {formatStringToLocaleDateString} from "../../utils/utilities";
 
 const LineChartContainer: React.FC<any> = ({data}) => {
     return (
@@ -12,7 +12,7 @@ const LineChartContainer: React.FC<any> = ({data}) => {
                 margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
                 className='line-chart'
             >
-                <XAxis dataKey="date" tickFormatter={formatStringToDate}/>
+                <XAxis dataKey="date" tickFormatter={formatStringToLocaleDateString}/>
                 <Tooltip/>
                 <CartesianGrid stroke="#ccd2ff" />
                 <Line type="monotone" dataKey="priceUsd" stroke="#808eff" yAxisId={0} />

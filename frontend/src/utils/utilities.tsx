@@ -1,4 +1,4 @@
-export const formatStringToDate = (tickItem: string) => (
+export const formatStringToLocaleDateString = (tickItem: string) => (
     new Date(tickItem).toLocaleDateString()
 )
 export const formatStringToNumber = (str: string | null) => (
