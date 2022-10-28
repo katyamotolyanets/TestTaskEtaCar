@@ -5,7 +5,7 @@ import CancelButton from "./CancelButton";
 afterEach(cleanup)
 
 describe('tests for CancelButton component', () => {
-    it('check background color of button', () => {
+    it('should check that background color of button is default', () => {
         render(<CancelButton children='Cancel'/>);
         expect(screen.getByText('Cancel')).toHaveStyle('background: #ff4d4d');
     })
