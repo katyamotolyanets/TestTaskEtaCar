@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledDetailPage = styled.div`
   display: flex;
@@ -27,4 +27,4 @@ export const StyledDetailPage = styled.div`
       }
     }
   }
-`
+`;

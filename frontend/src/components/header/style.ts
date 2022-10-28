@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -25,4 +25,4 @@ export const StyledHeader = styled.header`
       white-space: normal;
     }
   }
-`
+`;

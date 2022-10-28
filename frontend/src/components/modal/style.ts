@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 type ConfirmModalProps = {
-    background: string,
-    borderColor: string,
-    borderThickness: string,
-}
+  background: string;
+  borderColor: string;
+  borderThickness: string;
+};
 
 export const StyledConfirmModal = styled.div<ConfirmModalProps>`
   position: fixed;
@@ -12,8 +12,9 @@ export const StyledConfirmModal = styled.div<ConfirmModalProps>`
   top: 30vh;
   left: 35vw;
   border-radius: 1em;
-  background-color: ${props => props.background || '#fff'};
-  border: ${props => props.borderThickness ? `${props.borderThickness} solid ${props.borderColor}` : 'none'};
+  background-color: ${(props) => props.background || '#fff'};
+  border: ${(props) =>
+    props.borderThickness ? `${props.borderThickness} solid ${props.borderColor}` : 'none'};
   max-height: 50%;
   max-width: 30%;
   form {
@@ -27,12 +28,13 @@ export const StyledConfirmModal = styled.div<ConfirmModalProps>`
     .form-button-group {
       display: flex;
       justify-content: center;
-      button, input {
+      button,
+      input {
         margin: 0 5%;
       }
     }
   }
-`
+`;
 
 export const StyledModal = styled.div`
   height: 100%;
@@ -109,4 +111,4 @@ export const StyledModal = styled.div`
       max-width: 70%;
     }
   }
-`
+`;

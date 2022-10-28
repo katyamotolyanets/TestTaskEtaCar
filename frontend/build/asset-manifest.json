@@ -6,8 +6,5 @@
     "main.133aaaa4.css.map": "/TestTaskEtaCar/static/css/main.133aaaa4.css.map",
     "main.5e2d0fac.js.map": "/TestTaskEtaCar/static/js/main.5e2d0fac.js.map"
   },
-  "entrypoints": [
-    "static/css/main.133aaaa4.css",
-    "static/js/main.5e2d0fac.js"
-  ]
+  "entrypoints": ["static/css/main.133aaaa4.css", "static/js/main.5e2d0fac.js"]
 }
