@@ -16,10 +16,4 @@ describe('tests for CancelButton component', () => {
         fireEvent.click(cancelButton)
         expect(mockOnClick).toHaveBeenCalledTimes(1)
     })
-    it('snapshot renders correctly, truthy values', () => {
-        expect(<CancelButton children='Cancel'/>).toMatchSnapshot()
-    })
-    it('snapshot renders correctly, falsy values', () => {
-        expect(<CancelButton/>).toMatchSnapshot()
-    })
 })

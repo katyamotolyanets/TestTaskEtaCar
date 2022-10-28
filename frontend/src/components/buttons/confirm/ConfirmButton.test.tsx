@@ -9,10 +9,4 @@ describe('tests for ConfirmButton component', () => {
         render(<ConfirmButton children='Yes'/>);
         expect(screen.getByText('Yes')).toHaveStyle('background: #4dffa6');
     })
-    it('snapshot renders correctly, truthy values', () => {
-        expect(<ConfirmButton children='Yes'/>).toMatchSnapshot()
-    })
-    it('snapshot renders correctly, falsy values', () => {
-        expect(<ConfirmButton/>).toMatchSnapshot()
-    })
 })

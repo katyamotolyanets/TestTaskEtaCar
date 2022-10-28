@@ -32,11 +32,4 @@ describe('tests for Button component', () => {
         render(<Button children='Click me' color='#fff'/>);
         expect(screen.getByText('Click me')).toHaveStyle('color: #fff');
     })
-    it('snapshot renders correctly, truthy values', () => {
-        expect(<Button children='Click me' backgroundColor='transparent' color='#000' border={true} type='button'/>)
-            .toMatchSnapshot()
-    })
-    it('snapshot renders correctly, falsy values', () => {
-        expect(<Button/>).toMatchSnapshot()
-    })
 })
