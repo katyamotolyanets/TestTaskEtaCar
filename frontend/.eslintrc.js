@@ -3,12 +3,23 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["plugin:react/recommended", "standard-with-typescript"],
+  extends: ["plugin:react/recommended", "standard-with-typescript", "prettier"],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
+    project: ["./tsconfig.json"]
   },
-  plugins: ["react"],
-  rules: {},
+  plugins: [
+    "react",
+    "prettier"
+  ],
+  rules: {
+    semi: [2, "always"],
+    "comma-dangle": [2, "always-multiline"],
+    "prettier/prettier": "error",
+    "react/prop-types": 0
+
+  },
+
 };
