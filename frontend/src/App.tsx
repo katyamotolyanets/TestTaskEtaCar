@@ -57,7 +57,7 @@ const AppContent: React.FC = () => {
 const App = () => {
   const [trpcClient] = useState(() =>
     trpc.createClient({
-      url: 'https://test-task-etacar.herokuapp.com/:8080/trpc',
+      url: 'https://test-task-etacar.herokuapp.com:8080/trpc',
     }),
   );
   return (
