@@ -17,9 +17,8 @@ module.exports = {
   rules: {
     semi: [2, "always"],
     "comma-dangle": [2, "always-multiline"],
-    "prettier/prettier": "error",
-    "react/prop-types": 0
-
+    "prettier/prettier": "warn",
+    "react/prop-types": 0,
   },
 
 };
