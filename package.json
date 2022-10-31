@@ -1,10 +1,12 @@
 {
   "scripts": {
     "frontend": "cd frontend && npm i && npm start",
-    "backend": "cd server && npm i && npm start",
+    "backend": "cd server && npm i && ts-node-dev App.ts",
     "start": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "dependencies": {
-    "concurrently": "^7.5.0"
+    "concurrently": "^7.5.0",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0"
   }
 }
