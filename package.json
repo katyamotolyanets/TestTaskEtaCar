@@ -1,7 +1,7 @@
 {
   "scripts": {
     "frontend": "cd frontend && npm i && npm start",
-    "backend": "cd server && npm install --save express && npm i && ts-node-dev App.ts",
+    "backend": "cd server && npm cache clean --force && npm i && ts-node-dev App.ts",
     "start": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "dependencies": {
