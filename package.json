@@ -1,7 +1,7 @@
 {
   "scripts": {
     "frontend": "cd frontend && npm i && npm start",
-    "backend": "cd server && npm i && npm start",
+    "backend": "cd server && npm i @types/express && npm i && npm start",
     "start": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "dependencies": {
