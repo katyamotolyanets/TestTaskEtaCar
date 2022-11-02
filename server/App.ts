@@ -6,7 +6,7 @@ import cors from 'cors';
 import axios from 'axios';
 import {z} from "zod";
 
-const {PORT, API_URL} = process.env;
+const {API_URL} = process.env;
 
 const appRouter = trpc.router()
     .query("getCurrencyById", {
@@ -66,4 +66,4 @@ app.use(
     })
 );
 
-app.listen(8080, () => console.log(`Server started on port ${PORT}`));
+app.listen(8080);

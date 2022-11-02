@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "frontend": "PORT=3000 cd frontend && npm i && npm start",
-    "backend": "PORT=8080 cd server && npm i && npm start",
+    "frontend": "cd frontend && npm i && npm start",
+    "backend": "cd server && npm i && npm start",
     "build": "cd server && npm i && tsc",
     "start": "concurrently \"npm run backend\" \"npm run frontend\""
   },
