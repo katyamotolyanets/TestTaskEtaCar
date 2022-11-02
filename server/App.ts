@@ -66,4 +66,4 @@ app.use(
     })
 );
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(8080, () => console.log(`Server started on port ${PORT}`));
