@@ -16,7 +16,10 @@ const initialState: CurrencyState = {
   error: null,
 };
 
-export const currenciesReducer = (state = initialState, action: CurrencyAction): CurrencyState => {
+export const currenciesReducer = (
+  state = initialState,
+  action: CurrencyAction,
+): CurrencyState => {
   switch (action.type) {
     case CurrenciesActionTypes.FETCH_CURRENCIES:
       return {
@@ -28,7 +31,10 @@ export const currenciesReducer = (state = initialState, action: CurrencyAction):
     case CurrenciesActionTypes.FETCH_CURRENT_CURRENCIES_SUCCESS:
       return {
         ...state,
-        currentCurrenciesOnPage: [...state.currentCurrenciesOnPage, ...action.payload],
+        currentCurrenciesOnPage: [
+          ...state.currentCurrenciesOnPage,
+          ...action.payload,
+        ],
         loading: false,
         error: null,
       };
@@ -51,14 +57,18 @@ export const currenciesReducer = (state = initialState, action: CurrencyAction):
         ...state,
         currentCurrency: action.payload,
       };
-    case CurrenciesActionTypes.ADD_TO_CURRENCIES:
-      let currentCurrencies: CurrencyType[] =
-        JSON.parse(localStorage.getItem('currencies') as string) || [];
-      localStorage.setItem('currencies', JSON.stringify([...currentCurrencies, action.payload]));
+    case CurrenciesActionTypes.ADD_TO_CURRENCIES: {
+      const currentCurrencies: CurrencyType[] =
+          JSON.parse(localStorage.getItem('currencies') as string) || [];
+      localStorage.setItem(
+          'currencies',
+          JSON.stringify([...currentCurrencies, action.payload]),
+      );
       return {
         ...state,
         currencies: [...state.currencies, action.payload],
       };
+    }
     default:
       return state;
   }

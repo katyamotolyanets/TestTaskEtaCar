@@ -23,29 +23,33 @@ const AppContent: React.FC = () => {
     setCurrentWalletPrice,
   } = useActions();
 
-  const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+  const wallet: WalletCurrencyInfo[] =
+    JSON.parse(localStorage.getItem('wallet') as string) || [];
   const { data: topThreeCurrencies } = trpc.useQuery([
     'getLimitCurrenciesWithOffset',
     { limit: 3, offset: 0 },
   ]);
-  const { data: currencies } = trpc.useQuery(['fetchCurrenciesFromArray', wallet]);
+  const { data: currencies } = trpc.useQuery([
+    'fetchCurrenciesFromArray',
+    wallet,
+  ]);
 
   useEffect(() => {
     initializeWallet();
-    fetchWalletCurrenciesData(topThreeCurrencies, currencies!);
+    fetchWalletCurrenciesData(topThreeCurrencies, currencies);
     setCurrentWalletPrice();
     calculateInitialWalletPrice();
   }, []);
 
   return (
-    <div className="App">
+    <div className='App'>
       <GlobalStyle />
       <Navbar />
       <Router>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/currency/:id" element={<DetailPage />} />
+          <Route path='/' element={<MainPage />} />
+          <Route path='/main' element={<MainPage />} />
+          <Route path='/currency/:id' element={<DetailPage />} />
         </Routes>
       </Router>
       <WalletModal />
@@ -57,7 +61,7 @@ const AppContent: React.FC = () => {
 const App = () => {
   const [trpcClient] = useState(() =>
     trpc.createClient({
-      url: 'https://test-task-etacar.herokuapp.com:8080/trpc',
+      url: 'https://test-task-etacar-server.herokuapp.com/trpc',
     }),
   );
   return (

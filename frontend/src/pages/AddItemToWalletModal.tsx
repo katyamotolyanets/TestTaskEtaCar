@@ -14,24 +14,32 @@ const AddItemToWalletModal = () => {
     setCurrentWalletPrice,
     fetchWalletCurrenciesData,
   } = useActions();
-  const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+  const wallet: WalletCurrencyInfo[] =
+    JSON.parse(localStorage.getItem('wallet') as string) || [];
   const { data: topThreeCurrencies } = trpc.useQuery([
     'getLimitCurrenciesWithOffset',
     { limit: 3, offset: 0 },
   ]);
-  const { data: currencies } = trpc.useQuery(['fetchCurrenciesFromArray', wallet]);
-  const [countOfCurrency, setCountOfCurrency] = useState<string | undefined>(undefined);
+  const { data: currencies } = trpc.useQuery([
+    'fetchCurrenciesFromArray',
+    wallet,
+  ]);
+  const [countOfCurrency, setCountOfCurrency] = useState<string | undefined>(
+    undefined,
+  );
   const { currentCurrency } = useTypedSelector((state) => state.currencies);
   const { id, priceUsd } = currentCurrency;
 
-  const handleChangeCountOfCurrency = (event: React.FormEvent<HTMLInputElement>) => {
+  const handleChangeCountOfCurrency = (
+    event: React.FormEvent<HTMLInputElement>,
+  ) => {
     setCountOfCurrency(event.currentTarget.value);
   };
 
   const handleSubmitAddToWallet = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addCurrencyToWallet(id!, priceUsd!, Number(countOfCurrency));
-    fetchWalletCurrenciesData(topThreeCurrencies, currencies!);
+    fetchWalletCurrenciesData(topThreeCurrencies, currencies);
     setCurrentWalletPrice();
     setCurrentCurrency('', '');
     setCountOfCurrency(undefined);
@@ -42,10 +50,16 @@ const AddItemToWalletModal = () => {
   };
 
   return (
-    <Modal isActive={currentCurrency.id} handleClickHideModal={handleClickHideModal}>
+    <Modal
+      isActive={currentCurrency.id}
+      handleClickHideModal={handleClickHideModal}
+    >
       <h2>{currentCurrency.id}</h2>
       <form onSubmit={handleSubmitAddToWallet}>
-        <Input value={countOfCurrency} handleChange={handleChangeCountOfCurrency} />
+        <Input
+          value={countOfCurrency}
+          handleChange={handleChangeCountOfCurrency}
+        />
         <Button border={true}>Add to wallet</Button>
       </form>
     </Modal>

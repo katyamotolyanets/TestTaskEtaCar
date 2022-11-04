@@ -7,7 +7,11 @@ type ModalComponentProps = {
   handleClickHideModal: () => void;
 };
 
-const Modal: React.FC<ModalComponentProps> = ({ children, isActive, handleClickHideModal }) => {
+const Modal: React.FC<ModalComponentProps> = ({
+  children,
+  isActive,
+  handleClickHideModal,
+}) => {
   useEffect(() => {
     document.addEventListener<any>('keydown', handleKeyDown);
     return function () {
@@ -20,8 +24,8 @@ const Modal: React.FC<ModalComponentProps> = ({ children, isActive, handleClickH
   };
 
   return isActive ? (
-    <StyledModal className="modal" onClick={handleClickHideModal}>
-      <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+    <StyledModal className='modal' onClick={handleClickHideModal}>
+      <div className='modal__content' onClick={(e) => e.stopPropagation()}>
         {children}
       </div>
     </StyledModal>

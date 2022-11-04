@@ -7,7 +7,7 @@ export type CurrencyType = {
   rank?: string;
 };
 
-export interface CurrencyState {
+export type CurrencyState = {
   currencies: CurrencyType[];
   currentCurrency: {
     id: null | string;
@@ -16,7 +16,7 @@ export interface CurrencyState {
   currentCurrenciesOnPage: CurrencyType[];
   loading: boolean;
   error: null | string;
-}
+};
 
 export enum CurrenciesActionTypes {
   FETCH_CURRENCIES = 'FETCH_CURRENCIES',
@@ -27,37 +27,37 @@ export enum CurrenciesActionTypes {
   ADD_TO_CURRENCIES = 'ADD_TO_CURRENCIES',
 }
 
-interface FetchCurrenciesAction {
+type FetchCurrenciesAction = {
   type: CurrenciesActionTypes.FETCH_CURRENCIES;
-}
+};
 
-interface FetchCurrentCurrenciesSuccessAction {
+type FetchCurrentCurrenciesSuccessAction = {
   type: CurrenciesActionTypes.FETCH_CURRENT_CURRENCIES_SUCCESS;
   payload: CurrencyType[];
-}
+};
 
-interface FetchCurrenciesFailedAction {
+type FetchCurrenciesFailedAction = {
   type: CurrenciesActionTypes.FETCH_CURRENCIES_FAILED;
   payload: string;
-}
+};
 
-interface InitializeCurrenciesAction {
+type InitializeCurrenciesAction = {
   type: CurrenciesActionTypes.INITIALIZE_CURRENCIES;
   payload: CurrencyType[];
-}
+};
 
-interface SetCurrentCurrencyAction {
+type SetCurrentCurrencyAction = {
   type: CurrenciesActionTypes.SET_CURRENT_CURRENCY;
   payload: {
     id: null | string;
     priceUsd: null | string;
   };
-}
+};
 
-interface AddToCurrenciesAction {
+type AddToCurrenciesAction = {
   type: CurrenciesActionTypes.ADD_TO_CURRENCIES;
   payload: CurrencyType;
-}
+};
 
 export type CurrencyAction =
   | FetchCurrenciesAction

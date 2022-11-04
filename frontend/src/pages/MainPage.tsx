@@ -10,11 +10,13 @@ const ITEMS_PER_PAGE = 25;
 
 const MainPage: React.FC = () => {
   const { fetchCurrentCurrencies } = useActions();
-  const { currentCurrenciesOnPage } = useTypedSelector((state) => state.currencies);
+  const { currentCurrenciesOnPage } = useTypedSelector(
+    (state) => state.currencies,
+  );
   const [offset, setOffset] = useState(0);
   const { data: currentCurrencies, isLoading } = trpc.useQuery([
     'getLimitCurrenciesWithOffset',
-    { limit: ITEMS_PER_PAGE, offset: offset },
+    { limit: ITEMS_PER_PAGE, offset },
   ]);
 
   useEffect(() => {
@@ -40,17 +42,25 @@ const MainPage: React.FC = () => {
 
   return (
     <MainContainer>
-      <Table firstParam="Name" secondParam="Changes" thirdParam="Price" fourthParam="Add to wallet">
-        {currentCurrenciesOnPage?.map(({ id, name, changePercent24Hr, priceUsd }) => {
-          return (
-            <TableElement
-              id={id}
-              name={name}
-              changePercentDay={changePercent24Hr}
-              priceUsd={priceUsd}
-            />
-          );
-        })}
+      <Table
+        firstParam='Name'
+        secondParam='Changes'
+        thirdParam='Price'
+        fourthParam='Add to wallet'
+      >
+        {currentCurrenciesOnPage?.map(
+          ({ id, name, changePercent24Hr, priceUsd }) => {
+            return (
+              <TableElement
+                key={id}
+                id={id}
+                name={name}
+                changePercentDay={changePercent24Hr}
+                priceUsd={priceUsd}
+              />
+            );
+          },
+        )}
       </Table>
     </MainContainer>
   );

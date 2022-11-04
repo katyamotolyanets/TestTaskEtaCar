@@ -33,7 +33,7 @@ const ConfirmModal: React.FC<ConfirmModalComponentProps> = ({
     >
       <form onSubmit={handleSubmitCurrencyDeletion}>
         <h2>Are you sure you want to delete this item?</h2>
-        <div className="form-button-group">
+        <div className='form-button-group'>
           <CancelButton onClick={hideConfirmModal}>Cancel</CancelButton>
           <ConfirmButton>Yes</ConfirmButton>
         </div>

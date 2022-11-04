@@ -1,5 +1,9 @@
 import { Dispatch } from 'redux';
-import { CurrenciesActionTypes, CurrencyAction, CurrencyType } from '../../types/currency';
+import {
+  CurrenciesActionTypes,
+  CurrencyAction,
+  CurrencyType,
+} from '../../types/currency';
 
 export const addToCurrencies = (
   id: string,
@@ -9,8 +13,8 @@ export const addToCurrencies = (
 ) => {
   return async (dispatch: Dispatch<CurrencyAction>) => {
     const currency: CurrencyType = {
-      id: id,
-      name: name,
+      id,
+      name,
       priceUsd: price,
       changePercent24Hr: changePercentDay,
     };
@@ -27,7 +31,7 @@ export const fetchWalletCurrenciesData = (
 ) => {
   return async (dispatch: Dispatch<CurrencyAction>) => {
     try {
-      let result: CurrencyType[] = [...topCurrencies, ...currencies];
+      const result: CurrencyType[] = [...topCurrencies, ...currencies];
       dispatch({
         type: CurrenciesActionTypes.INITIALIZE_CURRENCIES,
         payload: result,
@@ -61,8 +65,8 @@ export const fetchCurrentCurrencies = (data: CurrencyType[]) => {
 export const setCurrentCurrency = (id: string, priceUsd: string) => {
   return async (dispatch: Dispatch<CurrencyAction>) => {
     const currentCurrency = {
-      id: id,
-      priceUsd: priceUsd,
+      id,
+      priceUsd,
     };
     localStorage.setItem('currentCurrency', id);
     dispatch({

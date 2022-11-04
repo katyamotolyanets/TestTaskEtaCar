@@ -7,7 +7,7 @@ type ConfirmButtonComponentProps = {
 
 const ConfirmButton: React.FC<ConfirmButtonComponentProps> = ({ children }) => {
   return (
-    <Button type="submit" backgroundColor="#4dffa6" border={false} color="#fff">
+    <Button type='submit' backgroundColor='#4dffa6' border={false} color='#fff'>
       {children}
     </Button>
   );

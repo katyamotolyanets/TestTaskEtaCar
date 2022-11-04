@@ -29,7 +29,9 @@ export default {
   },
 };
 
-export const Default: ComponentStory<typeof Button> = (arg) => <Button {...arg} />;
+export const Default: ComponentStory<typeof Button> = (arg) => (
+  <Button {...arg} />
+);
 Default.args = {
   children: 'Click me',
   backgroundColor: 'transparent',
@@ -38,7 +40,9 @@ Default.args = {
   type: 'button',
 };
 
-export const Cancel: ComponentStory<typeof Button> = (arg) => <Button {...arg} />;
+export const Cancel: ComponentStory<typeof Button> = (arg) => (
+  <Button {...arg} />
+);
 Cancel.args = {
   children: 'Cancel',
   backgroundColor: '#ff4d4d',
@@ -47,7 +51,9 @@ Cancel.args = {
   type: 'button',
 };
 
-export const Confirm: ComponentStory<typeof Button> = (arg) => <Button {...arg} />;
+export const Confirm: ComponentStory<typeof Button> = (arg) => (
+  <Button {...arg} />
+);
 Confirm.args = {
   children: 'Yes',
   backgroundColor: '#4dffa6',

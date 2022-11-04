@@ -5,19 +5,19 @@ export type WalletType = {
   priceUsd: string;
 };
 
-export interface WalletCurrencyInfo {
+export type WalletCurrencyInfo = {
   [key: string]: string | number;
   id: string;
   price: string;
   count: number;
-}
+};
 
-export interface WalletState {
+export type WalletState = {
   currencies: WalletCurrencyInfo[];
   loading: boolean;
   visible: boolean;
   currentWalletPrice: number;
-}
+};
 
 export enum WalletActionTypes {
   ADD_CURRENCY = 'ADD_CURRENCY',
@@ -29,37 +29,37 @@ export enum WalletActionTypes {
   SET_CURRENT_WALLET_PRICE = 'SET_CURRENT_WALLET_PRICE',
 }
 
-interface AddCurrencyAction {
+type AddCurrencyAction = {
   type: WalletActionTypes.ADD_CURRENCY;
   payload: WalletCurrencyInfo;
-}
+};
 
-interface DeleteCurrencyAction {
+type DeleteCurrencyAction = {
   type: WalletActionTypes.DELETE_CURRENCY;
   payload: string;
-}
+};
 
-interface GetInitialWalletPriceAction {
+type GetInitialWalletPriceAction = {
   type: WalletActionTypes.GET_INITIAL_WALLET_PRICE;
-}
+};
 
-interface SetModalVisibleAction {
+type SetModalVisibleAction = {
   type: WalletActionTypes.SET_MODAL_VISIBLE;
-}
+};
 
-interface SetModalInvisibleAction {
+type SetModalInvisibleAction = {
   type: WalletActionTypes.SET_MODAL_INVISIBLE;
-}
+};
 
-interface InitializeWalletAction {
+type InitializeWalletAction = {
   type: WalletActionTypes.INITIALIZE_WALLET;
   payload: WalletCurrencyInfo[];
-}
+};
 
-interface SetCurrentWalletPriceAction {
+type SetCurrentWalletPriceAction = {
   type: WalletActionTypes.SET_CURRENT_WALLET_PRICE;
   payload: number;
-}
+};
 
 export type WalletAction =
   | AddCurrencyAction

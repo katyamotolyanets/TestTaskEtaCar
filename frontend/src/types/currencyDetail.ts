@@ -9,24 +9,26 @@ export type CurrencyDetailType = {
   vwap24Hr: string | null;
 };
 
-export interface CurrencyDetailState {
+export type CurrencyDetailState = {
   currency: CurrencyDetailType;
   history: void[];
-}
+};
 
 export enum CurrencyDetailActionTypes {
   FETCH_CURRENCY = 'FETCH_CURRENCY',
   FETCH_CURRENCY_HISTORY = 'FETCH_CURRENCY_HISTORY',
 }
 
-interface FetchCurrencyAction {
+type FetchCurrencyAction = {
   type: CurrencyDetailActionTypes.FETCH_CURRENCY;
   payload: CurrencyDetailType;
-}
+};
 
-interface FetchCurrencyHistoryAction {
+type FetchCurrencyHistoryAction = {
   type: CurrencyDetailActionTypes.FETCH_CURRENCY_HISTORY;
   payload: void[];
-}
+};
 
-export type CurrencyDetailAction = FetchCurrencyAction | FetchCurrencyHistoryAction;
+export type CurrencyDetailAction =
+  | FetchCurrencyAction
+  | FetchCurrencyHistoryAction;

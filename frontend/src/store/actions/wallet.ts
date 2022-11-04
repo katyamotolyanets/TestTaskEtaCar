@@ -1,5 +1,9 @@
 import { Dispatch } from 'redux';
-import { WalletAction, WalletActionTypes, WalletCurrencyInfo } from '../../types/wallet';
+import {
+  WalletAction,
+  WalletActionTypes,
+  WalletCurrencyInfo,
+} from '../../types/wallet';
 
 type WalletCurrencyParameters = {
   id: string;
@@ -7,14 +11,19 @@ type WalletCurrencyParameters = {
   priceUsd: string;
 };
 
-const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+const wallet: WalletCurrencyInfo[] =
+  JSON.parse(localStorage.getItem('wallet') as string) || [];
 
-export const addCurrencyToWallet = (id: string, priceUsd: string, count: number) => {
+export const addCurrencyToWallet = (
+  id: string,
+  priceUsd: string,
+  count: number,
+) => {
   return async (dispatch: Dispatch<WalletAction>) => {
     const currencyInfo = {
-      id: id,
+      id,
       price: priceUsd,
-      count: count,
+      count,
     };
     dispatch({ type: WalletActionTypes.ADD_CURRENCY, payload: currencyInfo });
   };
@@ -28,7 +37,8 @@ export const deleteCurrencyFromWallet = (id: string) => {
 
 export const initializeWallet = () => {
   return async (dispatch: Dispatch<WalletAction>) => {
-    if (!localStorage.getItem('wallet')) localStorage.setItem('wallet', JSON.stringify([]));
+    if (!localStorage.getItem('wallet'))
+      localStorage.setItem('wallet', JSON.stringify([]));
     dispatch({ type: WalletActionTypes.INITIALIZE_WALLET, payload: wallet });
   };
 };
@@ -53,13 +63,14 @@ export const setWalletModalVisible = () => {
 
 export const setCurrentWalletPrice = () => {
   return async (dispatch: Dispatch<WalletAction>) => {
-    const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+    const wallet: WalletCurrencyInfo[] =
+      JSON.parse(localStorage.getItem('wallet') as string) || [];
     const currencies: WalletCurrencyParameters[] =
       JSON.parse(localStorage.getItem('currencies') as string) || [];
     let newWalletPrice = 0;
     await wallet?.forEach(({ id, count }) => {
       if (currencies.length > 0) {
-        let foundCurrency = currencies.find(
+        const foundCurrency = currencies.find(
           (element: WalletCurrencyParameters) => element.id === id,
         );
         newWalletPrice += Number(foundCurrency?.priceUsd) * count;

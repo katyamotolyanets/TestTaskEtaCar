@@ -8,15 +8,20 @@ type InputComponentProps = {
   handleChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 };
 
-const Input: React.FC<InputComponentProps> = ({ value, type, testId, handleChange }) => {
+const Input: React.FC<InputComponentProps> = ({
+  value,
+  type,
+  testId,
+  handleChange,
+}) => {
   return (
     <StyledInput
       data-testid={testId}
       type={type}
-      value={value ? value : ''}
+      value={value || ''}
       onChange={handleChange}
-      max="999999999999999"
-      min="0.01"
+      max='999999999999999'
+      min='0.01'
     />
   );
 };

@@ -17,7 +17,7 @@ const DetailPageContainer: React.FC<DetailPageContainerComponentProps> = ({
       <h2>
         {name} ({symbol})
       </h2>
-      <div className="detail-page-info">{children}</div>
+      <div className='detail-page-info'>{children}</div>
     </StyledDetailPage>
   );
 };

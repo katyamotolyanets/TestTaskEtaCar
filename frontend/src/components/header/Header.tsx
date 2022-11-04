@@ -9,7 +9,7 @@ type HeaderComponentProps = {
 const Header: React.FC<HeaderComponentProps> = ({ children, topCurrencies }) => {
   return (
     <StyledHeader>
-      <div className="top-currencies-container">{topCurrencies}</div>
+      <div className='top-currencies-container'>{topCurrencies}</div>
       {children}
     </StyledHeader>
   );

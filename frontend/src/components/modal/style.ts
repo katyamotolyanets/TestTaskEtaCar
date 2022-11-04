@@ -14,7 +14,9 @@ export const StyledConfirmModal = styled.div<ConfirmModalProps>`
   border-radius: 1em;
   background-color: ${(props) => props.background || '#fff'};
   border: ${(props) =>
-    props.borderThickness ? `${props.borderThickness} solid ${props.borderColor}` : 'none'};
+    props.borderThickness
+      ? `${props.borderThickness} solid ${props.borderColor}`
+      : 'none'};
   max-height: 50%;
   max-width: 30%;
   form {

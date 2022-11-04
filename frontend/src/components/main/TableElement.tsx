@@ -12,7 +12,12 @@ export type ElementComponentProps = {
   priceUsd: string;
 };
 
-const TableElement = ({ id, name, changePercentDay, priceUsd }: ElementComponentProps) => {
+const TableElement = ({
+  id,
+  name,
+  changePercentDay,
+  priceUsd,
+}: ElementComponentProps) => {
   const { setCurrentCurrency, addToCurrencies } = useActions();
 
   const handleClickBuyCurrency = async () => {
@@ -26,10 +31,14 @@ const TableElement = ({ id, name, changePercentDay, priceUsd }: ElementComponent
         <Link to={{ pathname: `/currency/${id}` }}>{name}</Link>
       </StyledTd>
       <StyledTd>
-        <Link to={{ pathname: `/currency/${id}` }}>{formatStringToNumber(changePercentDay)}</Link>
+        <Link to={{ pathname: `/currency/${id}` }}>
+          {formatStringToNumber(changePercentDay)}
+        </Link>
       </StyledTd>
       <StyledTd>
-        <Link to={{ pathname: `/currency/${id}` }}>{formatStringToNumber(priceUsd)}</Link>
+        <Link to={{ pathname: `/currency/${id}` }}>
+          {formatStringToNumber(priceUsd)}
+        </Link>
       </StyledTd>
       <StyledTd>
         <Button onClick={handleClickBuyCurrency} border={true}>

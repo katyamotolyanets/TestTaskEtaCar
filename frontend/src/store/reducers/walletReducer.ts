@@ -12,9 +12,13 @@ const initialState: WalletState = {
   currentWalletPrice: 0,
 };
 
-const wallet: WalletCurrencyInfo[] = JSON.parse(localStorage.getItem('wallet') as string) || [];
+const wallet: WalletCurrencyInfo[] =
+  JSON.parse(localStorage.getItem('wallet') as string) || [];
 
-export const walletReducer = (state = initialState, action: WalletAction): WalletState => {
+export const walletReducer = (
+  state = initialState,
+  action: WalletAction,
+): WalletState => {
   switch (action.type) {
     case WalletActionTypes.ADD_CURRENCY:
       wallet.push(action.payload);
@@ -24,8 +28,10 @@ export const walletReducer = (state = initialState, action: WalletAction): Walle
         currencies: [...state.currencies, action.payload],
         loading: false,
       };
-    case WalletActionTypes.DELETE_CURRENCY:
-      let elementsToDelete = wallet?.filter(({ id }: WalletCurrencyInfo) => id === action.payload);
+    case WalletActionTypes.DELETE_CURRENCY: {
+      const elementsToDelete = wallet?.filter(
+          ({id}: WalletCurrencyInfo) => id === action.payload,
+      );
       elementsToDelete.forEach((element: WalletCurrencyInfo) => {
         wallet.splice(wallet.indexOf(element), 1);
       });
@@ -34,20 +40,27 @@ export const walletReducer = (state = initialState, action: WalletAction): Walle
         ...state,
         currencies: wallet,
       };
-    case WalletActionTypes.GET_INITIAL_WALLET_PRICE:
+    }
+    case WalletActionTypes.GET_INITIAL_WALLET_PRICE: {
       let initialWalletPrice = 0;
       if (wallet.length > 0) {
-        wallet.reduce((previousItem: WalletCurrencyInfo, currentItem: WalletCurrencyInfo) => {
-          initialWalletPrice +=
-            Number(previousItem.price) * previousItem.count +
-            Number(currentItem.price) * currentItem.count;
-          return previousItem;
-        });
+        wallet.reduce(
+            (
+                previousItem: WalletCurrencyInfo,
+                currentItem: WalletCurrencyInfo,
+            ) => {
+              initialWalletPrice +=
+                  Number(previousItem.price) * previousItem.count +
+                  Number(currentItem.price) * currentItem.count;
+              return previousItem;
+            },
+        );
       }
       localStorage.setItem('initialWalletPrice', initialWalletPrice.toString());
       return {
         ...state,
       };
+    }
     case WalletActionTypes.SET_MODAL_VISIBLE:
       return {
         ...state,

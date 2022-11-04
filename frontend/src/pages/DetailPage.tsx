@@ -9,17 +9,32 @@ import LineChartContainer from '../components/linechart/LineChartContainer';
 
 const DetailPage: React.FC = () => {
   const { id } = useParams();
-  const { fetchCurrencyData, fetchCurrencyHistory, setCurrentCurrency } = useActions();
-  const { data: currency, isLoading: currencyLoading } = trpc.useQuery(['getCurrencyById', id!]);
-  const { data: history, isLoading: historyLoading } = trpc.useQuery(['fetchCurrencyHistory', id!]);
+  const { fetchCurrencyData, fetchCurrencyHistory, setCurrentCurrency } =
+    useActions();
+  const { data: currency, isLoading: currencyLoading } = trpc.useQuery([
+    'getCurrencyById',
+    id!,
+  ]);
+  const { data: history, isLoading: historyLoading } = trpc.useQuery([
+    'fetchCurrencyHistory',
+    id!,
+  ]);
 
   useEffect(() => {
     fetchCurrencyData(currency);
     fetchCurrencyHistory(history);
   }, [currencyLoading, historyLoading]);
 
-  const { rank, name, symbol, priceUsd, supply, maxSupply, marketCapUsd, vwap24Hr } =
-    currency || {};
+  const {
+    rank,
+    name,
+    symbol,
+    priceUsd,
+    supply,
+    maxSupply,
+    marketCapUsd,
+    vwap24Hr,
+  } = currency || {};
 
   const navigate = useNavigate();
   const handleClickBackToMainPage = () => {
@@ -27,7 +42,7 @@ const DetailPage: React.FC = () => {
   };
 
   const handleClickBuyCurrency = () => {
-    setCurrentCurrency(id!, priceUsd!);
+    setCurrentCurrency(id!, priceUsd);
   };
 
   return (
@@ -35,14 +50,22 @@ const DetailPage: React.FC = () => {
       <div>Rank: {rank}</div>
       <div>Price: {formatStringToNumber(priceUsd)}$</div>
       <div>Available supply: {formatStringToNumber(supply)}</div>
-      <div>Total quantity of asset issued: {formatStringToNumber(maxSupply)}</div>
+      <div>
+        Total quantity of asset issued: {formatStringToNumber(maxSupply)}
+      </div>
       <div>
         Quantity of trading volume represented in USD over the last 24 hours:{' '}
         {formatStringToNumber(marketCapUsd)}$
       </div>
-      <div>Average Price in the last 24 hours: {formatStringToNumber(vwap24Hr)}$</div>
-      <WalletButton handleClick={handleClickBuyCurrency}>Add to wallet</WalletButton>
-      <WalletButton handleClick={handleClickBackToMainPage}>Back to main</WalletButton>
+      <div>
+        Average Price in the last 24 hours: {formatStringToNumber(vwap24Hr)}$
+      </div>
+      <WalletButton handleClick={handleClickBuyCurrency}>
+        Add to wallet
+      </WalletButton>
+      <WalletButton handleClick={handleClickBackToMainPage}>
+        Back to main
+      </WalletButton>
       <LineChartContainer data={history} />
     </DetailPageContainer>
   );

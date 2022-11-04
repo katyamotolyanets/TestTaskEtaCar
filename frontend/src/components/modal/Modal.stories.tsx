@@ -21,7 +21,9 @@ export default {
   },
 };
 
-export const Confirm: ComponentStory<typeof ConfirmModal> = (arg) => <ConfirmModal {...arg} />;
+export const Confirm: ComponentStory<typeof ConfirmModal> = (arg) => (
+  <ConfirmModal {...arg} />
+);
 Confirm.args = {
   isConfirmModalShown: true,
   backgroundColor: '#fff',
