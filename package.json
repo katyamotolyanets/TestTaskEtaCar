@@ -2,7 +2,6 @@
   "scripts": {
     "frontend": "node --max_old_space_size=3072 && cd frontend && npm i --omit=dev && npm start",
     "backend": "cd server && npm i --omit=dev && npm start",
-    "build": "cd server && npm i --omit=dev && tsc",
     "start": "concurrently \"npm run backend\" \"npm run frontend\""
   },
   "dependencies": {
