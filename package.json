@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "frontend": "node --max_old_space_size=3072 && cd frontend && npm i --omit=dev && npm start",
+    "frontend": "node --max_old_space_size=3072 && cd frontend && npm i --only=prod && npm start",
     "backend": "cd server && npm i --omit=dev && npm start",
     "start": "concurrently \"npm run backend\" \"npm run frontend\""
   },
