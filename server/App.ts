@@ -7,6 +7,7 @@ import axios from 'axios';
 import {z} from "zod";
 
 const {API_URL} = process.env;
+const PORT = process.env.PORT || 8080;
 
 const appRouter = trpc.router()
     .query("getCurrencyById", {
@@ -66,4 +67,4 @@ app.use(
     })
 );
 
-app.listen(8080);
+app.listen(PORT);
