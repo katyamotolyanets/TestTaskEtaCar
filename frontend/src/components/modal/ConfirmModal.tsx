@@ -31,7 +31,7 @@ const ConfirmModal: React.FC<ConfirmModalComponentProps> = ({
       borderColor={borderColor!}
       borderThickness={borderThickness!}
     >
-      <form onSubmit={handleSubmitCurrencyDeletion}>
+      <form onSubmit={handleSubmitCurrencyDeletion} data-cy='confirm-modal'>
         <h2>Are you sure you want to delete this item?</h2>
         <div className='form-button-group'>
           <CancelButton onClick={hideConfirmModal}>Cancel</CancelButton>

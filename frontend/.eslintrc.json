@@ -6,7 +6,8 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:cypress/recommended"
     ],
     "overrides": [
     ],
@@ -17,7 +18,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "cypress"
     ],
     "rules": {
     }

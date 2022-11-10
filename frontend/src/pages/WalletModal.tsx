@@ -85,7 +85,7 @@ const WalletModal: React.FC = () => {
             <Table firstParam='Name' secondParam='Count' thirdParam='Delete'>
               {Object.entries(uniqueCurrencies)?.map((entry) => {
                 return (
-                  <StyledTr key={entry[0]}>
+                  <StyledTr key={entry[0]} data-cy={`${entry[0]}-wallet`}>
                     <StyledTd>{entry[0]}</StyledTd>
                     <StyledTd className='count-of-currencies'>
                       {entry[1] as string}

@@ -26,7 +26,7 @@ const TableElement = ({
   };
 
   return (
-    <StyledTr key={id}>
+    <StyledTr key={id} data-cy={id}>
       <StyledTd>
         <Link to={{ pathname: `/currency/${id}` }}>{name}</Link>
       </StyledTd>
